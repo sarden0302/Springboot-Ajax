@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.kh.AjaxProject.mapper.파일명칭작성">
-
+<mapper namespace="com.kh.AjaxProject.mapper.MemberMapper">
+    <select id="getAllMembers">
+        SELECT * FROM members
+    </select>
 </mapper>

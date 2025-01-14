@@ -1,4 +1,4 @@
-package com.kh.khtAcademy.config;
+package com.kh.AjaxProject.config;
 
 
 /* @Configuration
@@ -87,7 +87,7 @@ public class DBConfig {
         sessionFactoryBean.setMapperLocations(
                 applicationContext.getResources("classpath:/mappers/**.xml")  );
 
-        sessionFactoryBean.setTypeAliasesPackage("com.kh");
+        sessionFactoryBean.setTypeAliasesPackage("com.kh.AjaxProject");
 
         sessionFactoryBean.setConfigLocation(
                 applicationContext.getResource("classpath:mybatis-config.xml"));
