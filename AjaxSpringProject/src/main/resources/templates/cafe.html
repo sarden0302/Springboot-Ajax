@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link rel="icon" href="favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+<h1>안녕하세요. Cafe 페이지 입니다.</h1>
+<div class="cafe-container" id="cafeContainer">
+    <p>데이터를 불러오는 중...</p>
+</div>
+<script>
+    $.ajax({
+        url: '/api/cafes',
+        method: 'GET',
+        success: function(data) {
+            $.each(data, function(index, cafe) {
+                const cafeInfo = `<p>ID : ${cafe.id}</p>
+                                <p>Name : ${cafe.name}</p>
+                                <p>Address : ${cafe.address}</p>
+                                <p>Phone Number : ${cafe.phoneNumber}</p>
+                                <p>Opening Time : ${cafe.openingTime}</p>
+                                <p>Closing Time : ${cafe.closingTime}</p>
+                                <p>Description : ${cafe.description}</p>`
+                                ;
+                $('#cafeContainer').append(cafeInfo);
+            });
+        },
+        error : function(error) {
+            alert('예기치 못한 에러 발생')
+        }
+
+    })
+</script>
+</body>
+</html>
