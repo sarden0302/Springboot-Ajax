@@ -29,24 +29,25 @@
         url:'/api/users',
         method: 'GET',
         success: function(data) {
+            let userInfo;
             if (data.length > 0) {
                 $.each(data, function(index, user) {
-                    const userInfo = `
-                            <p><a href="/api/user/${user.id}"><strong>ID : </strong>${user.id}</a></p>
+                    userInfo += `
+                            <p><a href="/detail/${user.id}"><strong>ID : </strong>${user.id}</a></p>
                             <p><strong>Nickname : </strong>${user.nickname}</p>
                             <p><strong>Name : </strong>${user.username}</p>
                             <p><strong>Email : </strong>${user.email}</p>`;
-                    $("#mainContainer").append(userInfo);
                 })
+                $("#mainContainer").html(userInfo);
             } else {    // DB 에서 컨트롤러로 전달받은 데이터가 null 일 때
-                $("#mainContainer").append(`<p>검색된 정보가 조회되지 않습니다.</p>`);
+                $("#mainContainer").html(`<p>검색된 정보가 조회되지 않습니다.</p>`);
             }
         },
         error : function(error) {
             alert("컨트롤러에 문제가 생겨서 데이터를 가져오지 못합니다.");
         }
     })
-
+/*
     $.ajax({
         url:'/api/data',
         method: 'GET',
@@ -70,7 +71,7 @@
             $("#mainContainer").html("<p>Controller에서 데이터 가져오지 못했습니다.</p>");
         }
     })
-
+*/
 
 </script>
 </body>

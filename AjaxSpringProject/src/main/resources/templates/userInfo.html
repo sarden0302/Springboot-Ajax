@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>유저 상세 조회</title>
+    <link rel="icon" href="favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+<h1>사용자 정보</h1>
+<div id="userDetail">
+    <p>데이터를 불러오는 중</p>
+    <script>
+        /**
+         * 400 (Bad Request) = 잘못된 요청
+         * 클라이언트가 잘못된 데이터를 백엔드에게 보냈거나
+         * 요청이 서버의 요구 사항을 충족하지 못하기 때문에 원하는 데이터를 줄 수 없는 상태
+         *
+         * 404 500 504 에러
+         */
+
+        const queryParams = new URLSearchParams(window.location.search);
+        console.log(window.location.search);
+        const userId= queryParams.get('id');
+        console.log("userId : " + userId);
+        const examId = 1;
+        $.ajax({
+            url:`/api/user/${examId}`, // ajaxController 에 작성한 api 작성
+            method: 'GET',
+            success: function(data) {
+                if (data.length > 0) {
+                    $("#userDetail").html(`
+                        <p>아이디 : ${data.id}</p>
+                    `);
+                } else {
+                    $("#userDetail").html('<p>일치하는 회원을 조회할 수 없습니다.</p>');
+                }
+            },
+            error: function() {
+                $("#userDetail").html('<p>컨트롤러에서 데이터를 가져오는데 문제가 발생했습니다.</p>');
+            }
+
+        })
+    </script>
+</div>
+</body>
+</html>
