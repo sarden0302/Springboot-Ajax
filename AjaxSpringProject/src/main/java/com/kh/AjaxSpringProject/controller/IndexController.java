@@ -25,4 +25,9 @@ public class IndexController {
         model.addAttribute("user", userService.getUserId(id));
         return "userInfo";
     }
+
+    @GetMapping("/get/avatar")
+    public String getAvata() {
+        return "Avatar";
+    }
 }
