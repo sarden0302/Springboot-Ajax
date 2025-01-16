@@ -6,43 +6,73 @@
     <title>유저 상세 조회</title>
     <link rel="icon" href="/favicon.ico">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        #userDetail #profileImg {
+            width : 300px;
+            height : 300px;
+        }
+    </style>
 </head>
 <body>
 <h1>사용자 정보</h1>
 <div id="userDetail">
-    <p>데이터를 불러오는 중</p>
-    <script>
-        /**
-         * 400 (Bad Request) = 잘못된 요청
-         * 클라이언트가 잘못된 데이터를 백엔드에게 보냈거나
-         * 요청이 서버의 요구 사항을 충족하지 못하기 때문에 원하는 데이터를 줄 수 없는 상태
-         *
-         * 404 500 504 에러
-         */
-
-        const queryParams = new URLSearchParams(window.location.search);
-        console.log(window.location.search);
-        const userId= queryParams.get('id');
-        console.log("userId : " + userId);
-        const examId = 1;
-        $.ajax({
-            url:`/api/user/${examId}`, // ajaxController 에 작성한 api 작성
-            method: 'GET',
-            success: function(data) {
-                if (data.length > 0) {
-                    $("#userDetail").html(`
-                        <p>아이디 : ${data.id}</p>
-                    `);
-                } else {
-                    $("#userDetail").html('<p>일치하는 회원을 조회할 수 없습니다.</p>');
-                }
-            },
-            error: function() {
-                $("#userDetail").html('<p>컨트롤러에서 데이터를 가져오는데 문제가 발생했습니다.</p>');
-            }
-
-        })
-    </script>
+    <img id="profileImg">
+    <p id="username"></p>
+    <p id="email"></p>
 </div>
+<script>
+    // 아바타 랜덤 생성 완료하기
+    /*
+    JSON 형식이 아닌 XML 형식이므로 굳이 ajax 를 사용하지 않아도 된다
+     */
+    let seed = Math.random().toString(36).substring(2, 15);
+    const API_IMG_URL = `https://api.dicebear.com/9.x/lorelei/svg?seed=${seed}`
+    console.log("SSSSEEEEEDDD : " + seed);
+
+    /*
+    $.ajax({
+        url: API_IMG_URL,
+        method: 'GET',
+        success: function () {
+            $("#profileImg").attr('src', API_IMG_URL);
+        },
+        error: function () {
+
+        }
+    })*/
+
+    /**
+     * 400 (Bad Request) = 잘못된 요청
+     * 클라이언트가 잘못된 데이터를 백엔드에게 보냈거나
+     * 요청이 서버의 요구 사항을 충족하지 못하기 때문에 원하는 데이터를 줄 수 없는 상태
+     *
+     * 404 500 504 에러
+     */
+
+    const queryParams = new URLSearchParams(window.location.search);
+    console.log(window.location.search);
+    const userId = queryParams.get('id');
+    console.log("userId : " + userId);
+    const examId = 1;
+    $.ajax({
+        url: `/api/users/${userId}`, // ajaxController 에 작성한 api 작성
+        method: 'GET',
+        success: function (user) {
+            console.log(user); // 배열 아님
+            if (user) {
+                console.log("data length : " + user.length); //undefined 로 나올 경우 -> 데이터가 배열 형태가 아니거나 객체가 아닐 때 출력
+                $("#username").html(`<p><strong>Name : </strong>${user.username}</p>`);
+                $("#email").html(`<p><strong>Email : </strong>${user.email}</p>`);
+                $("#profileImg").attr('src', API_IMG_URL);
+                return;
+            }
+            $('#userDetail').html('일치하는 회원이 없습니다.');
+        },
+        error: function () {
+            $("#userDetail").html('<p>컨트롤러에서 데이터를 가져오는데 문제가 발생했습니다.</p>');
+        }
+
+    })
+</script>
 </body>
 </html>

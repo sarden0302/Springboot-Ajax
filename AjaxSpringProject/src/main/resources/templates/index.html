@@ -30,10 +30,10 @@
         method: 'GET',
         success: function(data) {
             let userInfo;
-            if (data.length > 0) {
+            if (data) {
                 $.each(data, function(index, user) {
                     userInfo += `
-                            <p><a href="/detail/${user.id}"><strong>ID : </strong>${user.id}</a></p>
+                            <p><a href="/detail?id=${user.id}"><strong>ID : </strong>${user.id}</a></p>
                             <p><strong>Nickname : </strong>${user.nickname}</p>
                             <p><strong>Name : </strong>${user.username}</p>
                             <p><strong>Email : </strong>${user.email}</p>`;
