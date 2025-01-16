@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>product</title>
+    <link rel="icon" href="/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: #444;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        .product-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .product {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .product:hover {
+            transform: scale(1.05);
+        }
+        .product img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .product-details {
+            padding: 15px;
+        }
+        .product-title {
+            font-size: 1.2rem;
+            margin: 0 0 10px;
+            color: #333;
+            font-weight: bold;
+        }
+        .product-price {
+            color: #007BFF;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        .product-description {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.4;
+        }
+    </style>
+
+</head>
+<body>
+<header>
+    <h1>매장 상품</h1>
+</header>
+<div class="product-container" id="product-container">
+    <div class="product" id="product">
+
+    </div>
+
+</div>
+<script>
+    $(document).ready(function() {
+        const apiUrl = `https://fakestoreapi.com/products/category/jewelery`;
+        function getProducts() {
+            $.ajax({
+                url: apiUrl,
+                method: 'GET',
+                success: function(data) {
+                    if (data.length > 0) {
+                        $.each(data, function(index, product) {
+                            const productInfo = `
+                                <img src="${product.image}">
+                                <p class="product-title">제목 : ${product.title}</p>
+                                <p class="product-price">가격 : ${product.price}</p>
+                                <p class="product-description">간략한 설명 : ${product.description}</p>
+                                `;
+                            $('#product').append(productInfo)
+                        })
+                    } else {
+                        alert('데이터가 비어있습니다.');
+                    }
+                },
+                error : function(error) {
+                    alert("데이터 가져오던 중 에러 발생 : " + error);
+                }
+            })
+        }
+
+        getProducts();
+
+    })
+</script>
+</body>
+</html>

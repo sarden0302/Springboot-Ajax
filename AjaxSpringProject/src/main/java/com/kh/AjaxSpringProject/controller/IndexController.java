@@ -35,4 +35,9 @@ public class IndexController {
     public String getRandomLogo() {
         return "/jqueryAjax/randomLogo";
     }
+
+    @GetMapping("/get/product")
+    public String getProduct() {
+        return "/jqueryAjax/product";
+    }
 }
