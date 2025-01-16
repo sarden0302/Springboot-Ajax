@@ -49,7 +49,7 @@ public class AjaxController {
     public List<User> getAllUsers() {
         List<User> users = userService.getAllUsers();
         //System.out.println(users);
-        log.info(users.get(0).toString());
+        //log.info(users.get(0).toString());
         return users;
     }
 

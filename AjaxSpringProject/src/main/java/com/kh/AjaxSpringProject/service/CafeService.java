@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface CafeService {
     List<Cafe> getAllCafes();
+
+    Cafe getCafeById(int id);
 }

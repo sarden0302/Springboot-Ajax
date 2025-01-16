@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link rel="icon" href="/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+<h1>카페 정보</h1>
+<div id="cafeDetail">
+    <p id="cafeName"></p>
+    <p id="cafeAddress"></p>
+    <p id="cafePhoneNumber"></p>
+    <p id="cafeOpeningTime"></p>
+    <p id="cafeClosingTime"></p>
+    <p id="cafeDescription"></p>
+</div>
+<div id="error-container" style="color : red; font-weight : bold"></div>
+<script>
+    const queryParams = new URLSearchParams(window.location.search);
+    console.log(window.location.search);
+    const userId = queryParams.get('id');
+    $.ajax({
+        url:`/api/cafe/${userId}`,
+        method: 'GET',
+        success: function(cafeData) {
+            if (cafeData) {
+                $('#cafeName').html(`이름 : ${cafeData.name}`);
+                $('#cafeAddress').html(`주소 : ${cafeData.address}`);
+                $('#cafePhoneNumber').html(`전화번호 : ${cafeData.phoneNumber}`);
+                $('#cafeOpeningTime').html(`오픈 시간 : ${cafeData.openingTime}`);
+                $('#cafeClosingTime').html(`클로즈 시간 : ${cafeData.closingTime}`);
+                $('#cafeDescription').html(`설명 : ${cafeData.description}`);
+            } else {
+                $('#error-container').html('현재 에러로 데이터를 업데이트 할 수 없습니다. 죄송합니다.')
+            }
+        },
+        error: function(error) {
+            alert(error);
+        }
+
+    })
+</script>
+</body>
+</html>

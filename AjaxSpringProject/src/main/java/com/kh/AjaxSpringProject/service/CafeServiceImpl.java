@@ -17,4 +17,9 @@ public class CafeServiceImpl implements CafeService{
     public List<Cafe> getAllCafes() {
         return cafeMapper.getAllCafes();
     }
+
+    @Override
+    public Cafe getCafeById(int id) {
+        return cafeMapper.getCafeById(id);
+    }
 }

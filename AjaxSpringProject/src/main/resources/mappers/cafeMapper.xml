@@ -6,4 +6,9 @@
         SELECT * FROM cafes;
     </select>
 
+    <select id="getCafeById">
+        SELECT * FROM cafes
+        WHERE id = #{id};
+    </select>
+
 </mapper>

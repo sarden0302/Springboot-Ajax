@@ -2,10 +2,14 @@ package com.kh.AjaxSpringProject.controller;
 
 import com.kh.AjaxSpringProject.dto.Cafe;
 import com.kh.AjaxSpringProject.service.CafeService;
+import com.kh.AjaxSpringProject.service.CafeServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -13,8 +17,33 @@ import java.util.List;
 @Controller
 public class CafeController {
 
-    @GetMapping("/cafe")
+    public CafeController() {
+        cafeService = new CafeServiceImpl();
+    }
+
+    @Autowired
+    private CafeService cafeService;
+
+    @GetMapping("/all/cafe")
     public String cafe() {
         return "cafe";
+    }
+
+    @GetMapping("/all/cafelist")
+    public String cafelist() {
+        return "recafeList";
+    }
+
+    @GetMapping("/cafedetail")
+    public String detail(@RequestParam("id") int id) {
+        return "cafeInfo";
+    }
+
+    @PostMapping("/recafeInfo")
+    public String recafeInfo(@RequestParam("id") int id, Model model) {
+        System.out.println("recafeInfo , id = " + id );
+        Cafe cafe = cafeService.getCafeById(id);
+        model.addAttribute("cafe", cafe);
+        return "recafeInfo";
     }
 }

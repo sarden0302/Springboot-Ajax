@@ -25,11 +25,12 @@
      *  -> DELETE, PUT 결과 반환 필요 없을 때
      *  -> 0
      */
+
     $.ajax({
         url:'/api/users',
         method: 'GET',
         success: function(data) {
-            let userInfo;
+            let userInfo = '';
             if (data) {
                 $.each(data, function(index, user) {
                     userInfo += `
