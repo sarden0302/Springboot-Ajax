@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>랜덤 로고 생성하기</title>
+    <link rel="icon" href="favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div class="logo-container">
+    <img id="logo" src="">
+</div>
+<button id="btnLogo">로고 생성하기</button>
+
+<script>
+    // avata-container = logo-container
+    // 로고 생성하는 버튼 만들기
+    $(document).ready(function() {
+        const apiUrl = `https://logotypes.dev/random/data`;
+
+        function getRandomLogo() {
+            //$('#logo').attr("src", url);
+            $.ajax({
+                url: apiUrl,
+                method: 'GET',
+                success: function(data) {
+                    console.log("data : " + data)
+                    $('#logo').attr("src", data.logo);
+                },
+                error : function() {
+                    alert('데이터 가져오는 중 문제가 발생했습니다.');
+                }
+            })
+        }
+
+        $('#btnLogo').click(function() {
+            getRandomLogo();
+        })
+
+        getRandomLogo();
+
+    })
+
+</script>
+</body>
+</html>
