@@ -70,7 +70,7 @@ public class DBConfig {
 
     @Bean
     public DataSource dataSource(HikariConfig config) {
-
+        // dto ~ controller 까지 데이터 중복되거나 문제가 있을 때 발생하는 에러
         DataSource dataSource = new HikariDataSource(config);
         return dataSource;
     }

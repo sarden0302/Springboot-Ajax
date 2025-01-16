@@ -28,16 +28,21 @@ public class IndexController {
 
     @GetMapping("/get/avatar")
     public String getAvata() {
-        return "/jqueryAjax/Avatar";
+        return "jqueryAjax/Avatar";
     }
 
     @GetMapping("/get/randomLogo")
     public String getRandomLogo() {
-        return "/jqueryAjax/randomLogo";
+        return "jqueryAjax/randomLogo";
     }
 
     @GetMapping("/get/product")
     public String getProduct() {
-        return "/jqueryAjax/product";
+        return "jqueryAjax/product";
+    }
+
+    @GetMapping("/get/kakaoLogin")
+    public String getKakaoLogin() {
+        return "jqueryAjax/kakaoLogin";
     }
 }

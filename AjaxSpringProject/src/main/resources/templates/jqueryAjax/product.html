@@ -69,14 +69,15 @@
     <h1>매장 상품</h1>
 </header>
 <div class="product-container" id="product-container">
-    <div class="product" id="product">
-
-    </div>
-
 </div>
 <script>
     $(document).ready(function() {
-        const apiUrl = `https://fakestoreapi.com/products/category/jewelery`;
+        // .toFixed(0) = 소수점 0자리 반올림
+        // .toFixed(2) = 소수점 2자리 반올림
+        /* Number((product.price * 1470).toFixed(0)).toLocaleString()
+            Number = toFixed가 문자열로 읽기 때문에 3자리씩 끝는 방식으로 변환( ex. 10,254,000)
+         */
+        const apiUrl = `https://fakestoreapi.com/products`;
         function getProducts() {
             $.ajax({
                 url: apiUrl,
@@ -85,12 +86,16 @@
                     if (data.length > 0) {
                         $.each(data, function(index, product) {
                             const productInfo = `
-                                <img src="${product.image}">
-                                <p class="product-title">제목 : ${product.title}</p>
-                                <p class="product-price">가격 : ${product.price}</p>
-                                <p class="product-description">간략한 설명 : ${product.description}</p>
+                                <div class="product" id="product">
+                                    <img src="${product.image}">
+                                    <div class="product-details">
+                                        <p class="product-title">제목 : ${product.title}</p>
+                                        <p class="product-price">가격 : ${Number((product.price * 1470).toFixed(0)).toLocaleString()}원</p>
+                                        <p class="product-description">간략한 설명 : ${product.description.substring(0, 100)}...더보기</p>
+                                    </div>
+                                </div>
                                 `;
-                            $('#product').append(productInfo)
+                            $('#product-container').append(productInfo)
                         })
                     } else {
                         alert('데이터가 비어있습니다.');
