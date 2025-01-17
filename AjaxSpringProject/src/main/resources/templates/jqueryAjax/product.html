@@ -101,7 +101,7 @@
                 console.log(cafeData);
                 if (cafeData) {
                     $.each(cafeData, function(index, item) {
-                        $("#categories").append(`<span class="category">${item}</span>`);
+                        $("#categories").append(`<span class="category" data-category="${item}">${item}</span>`);
                         //$("#categories").append(`<span class="category">${index + 1}     ${item}</span>`);
 
                         // 카테고리 클릭 이벤트 추가
@@ -109,7 +109,7 @@
                             console.log("onclick 실행");
                             // table tr td 선택 비슷함
                             // .category 대신 this
-                            loadProducts($(this).data("category"));
+                            loadProducts($(this).data('category'));
                             // 특정 카테고리가 아니라 .category 클래스의 첫 번째 요소에 있는 data-category 값을 불러오게 됌
                             // loadProducts($(".category").data("category"));
                         })
@@ -133,13 +133,15 @@
         // 카테고리에 따라서 카테고리에 해당하는 데이터를 다시 가져오기
 
         function loadProducts(category) {
+            console.log("category : " + category);
             $.ajax({    // https://fakestoreapi.com/products/category/해당카테고리
                 url: `${apiUrl}/category/${category}`,
                 method: 'GET',
                 success: function(data) {
                     if (data.length > 0) {
+                        let productInfo = ''
                         $.each(data, function(index, product) {
-                            const productInfo = `
+                            productInfo += `
                                 <div class="product" id="product">
                                     <img src="${product.image}">
                                     <div class="product-details">
@@ -149,8 +151,8 @@
                                     </div>
                                 </div>
                                 `;
-                            $('#product-container').append(productInfo)
                         })
+                        $('#product-container').html(productInfo)
                     } else {
                         alert('데이터가 비어있습니다.');
                     }
