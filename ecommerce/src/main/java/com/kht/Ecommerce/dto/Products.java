@@ -4,20 +4,21 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.util.Date;
 
 @AllArgsConstructor
 @Getter
 @NoArgsConstructor
 @Setter
 @ToString
-public class Cart {
+public class Products {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int userId;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date date;
+    private String title;
+    private int price;
+    private String description;
+    private String category;
+    private String image;
+    private double ratingRate;
+    private int ratingCount;
 }

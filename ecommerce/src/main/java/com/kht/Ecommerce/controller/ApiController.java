@@ -1,7 +1,7 @@
 package com.kht.Ecommerce.controller;
 
 import com.kht.Ecommerce.dto.Cart;
-import com.kht.Ecommerce.dto.Product;
+import com.kht.Ecommerce.dto.Products;
 import com.kht.Ecommerce.dto.User;
 import com.kht.Ecommerce.service.CartService;
 import com.kht.Ecommerce.service.ProductService;
@@ -29,7 +29,7 @@ public class ApiController {
 
     // 상품 목록 API
     @GetMapping("/api/products")
-    public List<Product> getProducts() {
+    public List<Products> getProducts() {
         return null;
     }
 
