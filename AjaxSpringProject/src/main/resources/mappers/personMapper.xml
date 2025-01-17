@@ -6,4 +6,9 @@
         SELECT * FROM users
     </select>
 
+    <select id="getPersonById">
+        SELECT * FROM users
+        WHERE id = #{id}
+    </select>
+
 </mapper>

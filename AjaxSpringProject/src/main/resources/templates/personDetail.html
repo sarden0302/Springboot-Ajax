@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link rel="icon" href="/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+<h1>카페 목록</h1>
+<div id="personDetail">
+    <p id="personId"></p>
+    <p id="personEmail"></p>
+    <p id="personNickname"></p>
+    <p id="personPassword"></p>
+    <p id="personName"></p>
+    <p id="personPhoneNumber"></p>
+    <p id="personCity"></p>
+    <p id="personGeolocation"></p>
+</div>
+<div id="error-container" style="color : red; font-weight : bold"></div>
+<script>
+    /*
+        1. window.location.href
+        url 에 쿼리 문자열을 사용할 수 있도록 설정
+        현재 웹페이지 URL 에서 ? 뒤에 오는 쿼리 문자열을 반환
+
+        ex)
+        https://www.kht.co.kr/page?name=gildong&age=40
+        window.location.search 의 값은
+            - name=gildong
+            - age=40
+        위 주소에서 name을 가져오길 원한다면 -> .get("name")
+        URLSearchParams(window.location.search).get("name");
+     */
+    // http://localhost:8081/cafe?id=아이디값을 가져옴
+    // queryParmas 안에는 ? 뒤에 존재하는 key, value 가 존재
+    const queryParams = new URLSearchParams(window.location.search);
+    console.log(window.location.search);
+    const userId = queryParams.get('id'); // ? 뒤에 키 이름으로 id라 적힌 값을 가지고 있는 상태
+    $.ajax({
+        //${} : 문자열 사이에서 자바스크립트를 작성해야할 때 사용
+        url: `/api/persons/${userId}`,
+        method: 'GET',
+        success: function (userData) {
+            if (userData) {
+                $('#personId').html(`아이디 : ${userData.id}`);
+                $('#personEmail').html(`이메일 : ${userData.email}`);
+                $('#personNickname').html(`닉네임 : ${userData.username}`);
+                $('#personPassword').html(`비밀번호 : ${userData.password}`);
+                $('#personName').html(`이름 : ${userData.firstname}, ${userData.lastname}`);
+                $('#personPhoneNumber').html(`전화번호 : ${userData.phone}`);
+                $('#personCity').html(`주소 : ${userData.city}, ${userData.street} ${userData.streetNumber} ${userData.zipcode}`);
+                $('#personGeolocation').html(`경도 : ${userData.geolocationLat}, 위도 : ${userData.geolocationLong}`);
+            } else {
+                $('#error-container').html('현재 에러로 데이터를 업데이트 할 수 없습니다. 죄송합니다.')
+            }
+        },
+        error: function (error) {
+            alert(error);
+        }
+
+    })
+</script>
+</body>
+</html>

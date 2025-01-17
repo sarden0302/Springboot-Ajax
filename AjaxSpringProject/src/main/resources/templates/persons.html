@@ -29,7 +29,8 @@
                                     <p>${user.firstname}, ${user.lastname}</p>
                                     <p>${user.phone}</p>
                                     <p>${user.city}, ${user.street} ${user.streetNumber} ${user.zipcode}</p>
-                                    <p>${user.geolocationLat}, ${user.geolocationLat}</p>`;
+                                    <p>${user.geolocationLat}, ${user.geolocationLong}</p>
+                                    <a href="/person?id=${user.id}">이동하기</a>`;
                     })
                     $('#persons').html(userInfo);
                 }

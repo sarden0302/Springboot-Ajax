@@ -6,6 +6,8 @@ import com.kh.AjaxSpringProject.service.PersonServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -27,5 +29,10 @@ public class PersonController {
     @GetMapping("/api/person")
     public String getAllPerson() {
         return "persons";
+    }
+
+    @GetMapping("/person")
+    public String getPersonDetail(@RequestParam int id) {
+        return "personDetail";
     }
 }

@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface PersonService {
     List<Person> getAllPerson();
+
+    Person getPersonById(int id);
 }

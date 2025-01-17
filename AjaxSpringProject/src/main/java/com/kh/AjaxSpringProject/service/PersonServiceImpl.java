@@ -17,4 +17,9 @@ public class PersonServiceImpl implements PersonService {
     public List<Person> getAllPerson() {
         return personMapper.getAllPerson();
     }
+
+    @Override
+    public Person getPersonById(int id) {
+        return personMapper.getPersonById(id);
+    }
 }
