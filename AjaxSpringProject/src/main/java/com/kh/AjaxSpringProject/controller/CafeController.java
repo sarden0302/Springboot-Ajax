@@ -7,10 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,7 +28,7 @@ public class CafeController {
 
     @GetMapping("/all/cafelist")
     public String cafelist() {
-        return "recafeList";
+        return "cafeList";
     }
 
     @GetMapping("/cafedetail")
@@ -39,7 +36,7 @@ public class CafeController {
         return "cafeInfo";
     }
 
-    @PostMapping("/recafeInfo")
+    @RequestMapping(value = "/recafeInfo", method={RequestMethod.POST, RequestMethod.GET})
     public String recafeInfo(@RequestParam("id") int id, Model model) {
         System.out.println("recafeInfo , id = " + id );
         Cafe cafe = cafeService.getCafeById(id);

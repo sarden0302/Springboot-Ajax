@@ -18,6 +18,24 @@
             padding: 1rem 0;
             text-align: center;
         }
+        header .categories {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        header .categories .category {
+            background-color: #007BFF;
+            color : white;
+            padding: 5px 10px;
+            border-radius : 5px;
+            cursor:pointer;
+            transition: background-color 0.2s;
+        }
+        header .categories .category:hover {
+            background-color: #0056b3;
+        }
         .product-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -67,20 +85,56 @@
 <body>
 <header>
     <h1>매장 상품</h1>
+    <div class="categories" id="categories"></div>
 </header>
 <div class="product-container" id="product-container">
 </div>
 <script>
+
     $(document).ready(function() {
+        $.ajax({
+            url: "https://fakestoreapi.com/products/categories",
+            method : 'GET',
+            success : function (cafeData) {
+                // DB로 가져올 경우 f12 -> network Name으로 cafeData를 찾아 데이터 정보를 확인할 수 있음
+                // fakestoreapi에서 데이터를 제공할 때는 위 주소에서 전달하는 이름 값으로 데이터 확인 가능
+                console.log(cafeData);
+                if (cafeData) {
+                    $.each(cafeData, function(index, item) {
+                        $("#categories").append(`<span class="category">${item}</span>`);
+                        //$("#categories").append(`<span class="category">${index + 1}     ${item}</span>`);
+
+                        // 카테고리 클릭 이벤트 추가
+                        $('.category').click(function() {
+                            console.log("onclick 실행");
+                            // table tr td 선택 비슷함
+                            // .category 대신 this
+                            loadProducts($(this).data("category"));
+                            // 특정 카테고리가 아니라 .category 클래스의 첫 번째 요소에 있는 data-category 값을 불러오게 됌
+                            // loadProducts($(".category").data("category"));
+                        })
+                    })
+                } else {
+                    $("#categories").html(`<p>카테고리가 DB에 존재하지 않습니다.</p>`);
+                }
+            },
+            error : function(err) {
+                $("#categories").html(`<p>카테고리 로드 오류 백엔드 문제 발생</p>`);
+            }
+
+        })
         // .toFixed(0) = 소수점 0자리 반올림
         // .toFixed(2) = 소수점 2자리 반올림
         /* Number((product.price * 1470).toFixed(0)).toLocaleString()
             Number = toFixed가 문자열로 읽기 때문에 3자리씩 끝는 방식으로 변환( ex. 10,254,000)
          */
         const apiUrl = `https://fakestoreapi.com/products`;
-        function getProducts() {
-            $.ajax({
-                url: apiUrl,
+
+        // 카테고리에 따라서 카테고리에 해당하는 데이터를 다시 가져오기
+
+        function loadProducts(category) {
+            $.ajax({    // https://fakestoreapi.com/products/category/해당카테고리
+                url: `${apiUrl}/category/${category}`,
                 method: 'GET',
                 success: function(data) {
                     if (data.length > 0) {
@@ -106,8 +160,6 @@
                 }
             })
         }
-
-        getProducts();
 
     })
 </script>
