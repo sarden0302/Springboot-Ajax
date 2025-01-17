@@ -24,7 +24,8 @@
                                 <p>Phone Number : ${cafe.phoneNumber}</p>
                                 <p>Opening Time : ${cafe.openingTime}</p>
                                 <p>Closing Time : ${cafe.closingTime}</p>
-                                <p>Description : ${cafe.description}</p>`
+                                <p>Description : ${cafe.description}</p>
+                                <p><a href="/cafe?id=${cafe.id}">이동하기</a></p>`
                                 ;
                 $('#cafeContainer').append(cafeInfo);
             });

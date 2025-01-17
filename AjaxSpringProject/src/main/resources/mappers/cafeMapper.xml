@@ -3,12 +3,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.AjaxSpringProject.mapper.CafeMapper">
     <select id="getAllCafes">
-        SELECT * FROM cafes;
+        SELECT * FROM cafes
     </select>
 
     <select id="getCafeById">
         SELECT * FROM cafes
-        WHERE id = #{id};
+        WHERE id = #{id}
     </select>
 
 </mapper>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>유저들</title>
+    <link rel="icon" href="/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+<h1>유저들 정보</h1>
+<div class="person-container" id="persons">
+
+</div>
+
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            url: "/get/persons",
+            method: 'GET',
+            success: function(usersData) {
+                if (usersData) {
+                    let userInfo = ``;
+                    $.each(usersData, function(index, user) {
+                        userInfo += `<p>${user.id}</p>
+                                    <p>${user.email}</p>
+                                    <p>${user.username}</p>
+                                    <p>${user.password}</p>
+                                    <p>${user.firstname}, ${user.lastname}</p>
+                                    <p>${user.phone}</p>
+                                    <p>${user.city}, ${user.street} ${user.streetNumber} ${user.zipcode}</p>
+                                    <p>${user.geolocationLat}, ${user.geolocationLat}</p>`;
+                    })
+                    $('#persons').html(userInfo);
+                }
+            },
+            error : function() {
+                alert('에러 발생');
+            }
+
+        })
+
+    })
+
+</script>
+</body>
+</html>
