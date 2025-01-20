@@ -13,6 +13,7 @@ $(document).ready(function () {
                    `;
                 });
                 $('#cart-container').html(cartInfo);
+
             } else {
                 $('#cart-container').html("현재 장바구니는 비어있습니다.");
             }
