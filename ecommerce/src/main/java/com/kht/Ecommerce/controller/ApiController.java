@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 public class ApiController {
 
-    ApiController() {
+    public ApiController() {
         userService = new UserServiceImpl();
         cartService = new CartServiceImpl();
         productService = new ProductServiceImpl();
@@ -42,8 +42,18 @@ public class ApiController {
     }
 
     // 특정 사용자의 장바구니 API
+    // http://loaclhost:8080/api/carts?userId=${userId}
     @GetMapping("/api/carts")
-    public List<CartProductsVo> getCart(@RequestParam("userId") int userId) {
-        return cartService.getAllCartsProductVo(userId);
+    public List<Cart> getCart(@RequestParam("userId") int userId) {
+        return cartService.getCartByUserId(userId);
+    }
+
+    /*
+        HTTP Status 500
+
+     */
+    @GetMapping("/cart{userId}")
+    public String getCartById(@PathVariable("userId") int id) {
+        return "cart";
     }
 }

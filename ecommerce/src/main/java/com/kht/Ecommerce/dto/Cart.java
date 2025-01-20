@@ -19,5 +19,8 @@ public class Cart {
     private int id;
     private int userId;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private String title;
     private Date date;
+    private int price;
+    private int quantity;
 }

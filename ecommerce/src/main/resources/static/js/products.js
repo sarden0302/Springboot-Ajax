@@ -7,9 +7,14 @@ $(document).ready(function () {
                 if (products) {
                     let productInfo = '';
                     $.each(products, function(index, product) {
+                        console.log("index : " + index +", product : " + product)
                         productInfo += `
-                   <p>${product.id}</p>
-                   `;
+                        <div class="card">
+                            <img src="${product.image}" alt="${product.title}">
+                            <h3>${product.title}</h3>
+                            <p>${product.price}</p>
+                        </div>
+                        `;
                     });
                     $('#product-container').html(productInfo);
                 } else {

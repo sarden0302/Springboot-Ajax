@@ -1,5 +1,6 @@
 package com.kht.Ecommerce.service;
 
+import com.kht.Ecommerce.dto.Cart;
 import com.kht.Ecommerce.mapper.CartMapper;
 import com.kht.Ecommerce.vo.CartProductsVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,13 @@ public class CartServiceImpl implements CartService{
     CartMapper cartMapper;
 
     @Override
+    public List<Cart> getCartByUserId(int userId) {
+        return cartMapper.getCartByUserId(userId);
+    }
+
+    /*
+    @Override
     public List<CartProductsVo> getAllCartsProductVo(int cartId) {
         return cartMapper.getAllCartsProductVo(cartId);
-    }
+    }*/
 }
