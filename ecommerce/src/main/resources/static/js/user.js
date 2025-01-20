@@ -14,6 +14,7 @@ $(document).ready(function () {
                     </div>
                    `
                 });
+
                 $('#user-container').html(userInfo);
             } else {
                 $('#user-container').html('<p>현재 회원 수는 0명입니다.</p>');
