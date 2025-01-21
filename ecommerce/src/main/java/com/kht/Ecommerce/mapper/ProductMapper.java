@@ -8,4 +8,8 @@ import java.util.List;
 @Mapper
 public interface ProductMapper {
     List<Products> getAllProducts();
+
+    void addProduct();
+
+    Products getProductById(int id);
 }

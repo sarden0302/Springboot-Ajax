@@ -3,10 +3,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kht.Ecommerce.mapper.CartMapper">
     <select id="getCartByUserId">
-        SELECT C.id, C.userId, C.date, P.title, P.price, CP.quantity
+        SELECT  C.id, C.userId, C.date,
+                P.title, P.price,
+                CP.quantity
+
         FROM carts C
-        JOIN cart_products CP ON CP.productId = C.id
-        JOIN products P ON P.id = CP.productId
+                 JOIN cart_products CP  ON CP.cartId =  C.id
+                 JOIN products P   ON P.id = CP.productId
+
         WHERE C.userId = #{userId}
     </select>
     <!--

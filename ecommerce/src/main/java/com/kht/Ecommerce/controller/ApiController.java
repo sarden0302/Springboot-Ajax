@@ -5,14 +5,14 @@ import com.kht.Ecommerce.dto.Products;
 import com.kht.Ecommerce.dto.User;
 import com.kht.Ecommerce.service.*;
 import com.kht.Ecommerce.vo.CartProductsVo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
+@Slf4j
 @RestController
 public class ApiController {
 
@@ -49,11 +49,42 @@ public class ApiController {
     }
 
     /*
-        HTTP Status 500
-
+        Param = Parameter
+        @RequestParam   : 부분적으로 저장할 때 사용
+        @RequestBody    : 전체적으로 저장할 때 사용
      */
-    @GetMapping("/cart{userId}")
-    public String getCartById(@PathVariable("userId") int id) {
-        return "cart";
+    @PostMapping("/api/join")
+    public void join(@RequestBody User user) {
+        userService.insertUser(user);
+    }
+
+    @GetMapping("/api/existEmail")
+    public boolean existEmail(@RequestParam("email") String email) {
+        /*
+        boolean exists = userService.existByEmail(email);
+        Map<String, Object> map = new HashMap<>();
+        map.put("exists", exists);
+        if (exist) {
+        } else {
+        }
+        return map;
+         */
+        return userService.existByEmail(email);
+    }
+
+    @PostMapping("/api/products/insert")
+    public void addProduct(@RequestBody Products products) {
+        log.info("add product : {}", products);
+        productService.addProduct();
+    }
+
+    @GetMapping("/api/user/{id}")
+    public User apiUserById(@PathVariable int id) {
+        return userService.getUsersById(id);
+    }
+
+    @GetMapping("/api/products/{id}")
+    public Products apiProductById(@PathVariable int id) {
+        return productService.getProductById(id);
     }
 }

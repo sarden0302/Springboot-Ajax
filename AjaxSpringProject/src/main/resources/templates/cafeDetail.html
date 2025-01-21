@@ -42,7 +42,7 @@
         method: 'GET',
         success: function(cafeData) {
             if (cafeData) {
-                $('#cafeName').html(`이름 : ${cafeData.name}`);
+                $('#cafeName').html (`이름 : ${cafeData.name}`);
                 $('#cafeAddress').html(`주소 : ${cafeData.address}`);
                 $('#cafePhoneNumber').html(`전화번호 : ${cafeData.phoneNumber}`);
                 $('#cafeOpeningTime').html(`오픈 시간 : ${cafeData.openingTime}`);

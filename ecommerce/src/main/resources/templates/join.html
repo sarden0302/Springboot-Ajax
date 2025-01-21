@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <link rel="icon" href="/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+<h1>회원가입</h1>
+<form id="joinForm" class="join-form">
+    <!-- email, username, password, firstname, lastname, phone, city, street, zipcodeg -->
+    <label for="email">이메일 : </label>
+    <input type="email" name="email" id="email">
+
+    <label for="username">아이디 : </label>
+    <input type="text" name="username" id="username">
+
+    <label for="password">비밀번호 : </label>
+    <input type="password" name="password" id="password">
+
+    <label for="firstname">이름 : </label>
+    <input type="text" name="firstname" id="firstname">
+
+    <label for="lastname">성 : </label>
+    <input type="text" name="lastname" id="lastname">
+
+    <label for="phone">전화번호 : </label>
+    <input type="text" name="phone" id="phone">
+
+    <label for="city">도시 : </label>
+    <input type="text" name="city" id="city">
+
+    <label for="street">도로 : </label>
+    <input type="text" name="street" id="street">
+
+    <label for="streetNumber">도로 번호 : </label>
+    <input type="text" name="streetNumber" id="streetNumber">
+
+    <label for="zipcode">우편번호 : </label>
+    <input type="text" name="zipcode" id="zipcode">
+
+    <button type="submit">회원가입</button>
+</form>
+
+<script>
+    $(document).ready(function () {
+
+        $('#joinForm').submit(function (event) {
+            event.preventDefault();
+            // 이메일 중복확인 /api/existEmail
+            $.ajax({
+                url: "api/existEmail",
+                method: "GET",
+                success: function(data) {
+                    if(data) {
+                        alert("이미 사용중인 이메일입니다.");
+                        return;
+                    } else {
+                        alert("사용 가능한 이메일입니다.");
+                    }
+                }, error: function(data) {
+                    alert("데이터베이스 연결 불가");
+                }
+            })
+
+            $.ajax({
+                url: "/api/join",
+                method: "POST",
+                contentType: "application/json",    // db에 글자 형식만 전송하겠다.
+                data: JSON.stringify({   // input id 명칭을 해당 DTO 에 작성된 필드이름으로 선언 및 데이터 저장
+                    email: $("#email").val(),
+                    username: $("#username").val(),
+                    password: $("#password").val(),
+                    firstname: $("#firstname").val(),
+                    lastname: $("#lastname").val(),
+                    phone: $("#phone").val(),
+                    city: $("#city").val(),
+                    street: $("#street").val(),
+                    streetNumber: $("#streetNumber").val(),
+                    zipcode: $("#zipcode").val()
+                }),
+                success: function () {   // success 에서 회원가입을 완료한 후 전달할 게 없다면 data 작성 x
+                    alert("회원가입이 완료되었습니다.");
+                    window.location.href = "/"; // 회원가입이 완료된 후 이동할 페이지 설정
+                },
+                error: function (error) {
+                    alert("회원가입을 할 수 없습니다.");
+                }
+
+            })
+        })
+    });
+</script>
+
+</body>
+</html>

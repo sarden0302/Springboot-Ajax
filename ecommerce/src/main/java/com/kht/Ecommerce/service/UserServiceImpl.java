@@ -17,4 +17,20 @@ public class UserServiceImpl implements UserService {
     public List<User> getAllUsers() {
         return userMapper.getAllUsers();
     }
+
+    @Override
+    public void insertUser(User user) {
+        userMapper.insertUser(user); // return 필요 없음
+    }
+
+    @Override
+    public boolean existByEmail(String email) {
+
+        return userMapper.existByEmail(email) > 0;
+    }
+
+    @Override
+    public User getUsersById(int id) {
+        return userMapper.getUsersById(id);
+    }
 }

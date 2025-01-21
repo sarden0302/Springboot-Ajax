@@ -11,6 +11,7 @@ $(document).ready(function () {
                         <h3>${user.lastname}${user.firstname}</h3>
                         <p>user.phone</p>
                         <a href="/cart?userId=${user.id}">장바구니 확인하기</a>
+                        <a href="/user?id=${user.id}">사용자 상세정보</a>
                     </div>
                    `
                 });

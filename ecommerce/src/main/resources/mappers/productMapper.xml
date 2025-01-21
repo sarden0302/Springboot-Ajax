@@ -7,4 +7,13 @@
         FROM products
     </select>
 
+    <select id="getProductById">
+        SELECT id, title, price, description, category, image FROM products WHERE id = #{id}
+    </select>
+
+    <insert id="addProduct">
+        INSERT INTO products (id, title, price, description, category, image, rating_rate, rating_count)
+        VALUES (#{id}, #{title}, #{price}, #{description}, #{category}, #{image}, #{ratingRate}, #{ratingCount})
+    </insert>
+
 </mapper>
