@@ -52,4 +52,5 @@ public class ViewController {
     public String getProductById(@RequestParam("id") int id) {
         return "product_detail";
     }
+
 }

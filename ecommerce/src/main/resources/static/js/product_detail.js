@@ -1,8 +1,8 @@
 $(document).ready(function() {
-    const userId = new URLSearchParams(window.location.search).get("id");
-    console.log("userId : " + userId);
+    const id = new URLSearchParams(window.location.search).get("id");
+    console.log("userId : " + id);
     $.ajax({
-        url: `/api/products/${userId}`,
+        url: `/api/products/${id}`,
         method: "GET",
         success : function(data) {
             if(data) {

@@ -79,12 +79,12 @@ public class ApiController {
     }
 
     @GetMapping("/api/user/{id}")
-    public User apiUserById(@PathVariable int id) {
+    public User apiUserById(@PathVariable("id") int id) {
         return userService.getUsersById(id);
     }
 
     @GetMapping("/api/products/{id}")
-    public Products apiProductById(@PathVariable int id) {
+    public Products apiProductById(@PathVariable("id") int id) {
         return productService.getProductById(id);
     }
 }
