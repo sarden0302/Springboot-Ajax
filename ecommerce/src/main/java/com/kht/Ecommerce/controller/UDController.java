@@ -20,7 +20,7 @@ public class UDController {
     // 제품 update
     // html 파일에서 전달받은 업데이트 상탵 내용을 DB 에 수정하기
     @PutMapping("/update/{id}")
-    public void updateProduct(@PathVariable int id, @RequestBody Products products) {
+    public void updateProduct(@PathVariable("id") int id, @RequestBody Products products) {
         products.setId(id);
         productService.updateProduct(products);
     }

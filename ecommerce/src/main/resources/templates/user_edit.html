@@ -11,14 +11,13 @@
 <h1>유저 수정하기</h1>
 <form >
     <label>유저 이름 : </label>
-    <p id="lastname"></p>
-    <p id="firstname"></p>
+    <span id="username"></span>
 
     <label for="email">이메일 : </label>
     <input type="email" id="email">
 
     <label for="phone">핸드폰 번호 : </label>
-    <input type="number" id="phone">
+    <input type="text" id="phone" pattern="[0-9\-]">
 
     <label for="city">사는 곳 : </label>
     <input type="text" id="city">
@@ -43,17 +42,18 @@
         $.ajax({
             url: `/api/user/${userId}`,
             method: "GET",
-            success: function (users) {
+            success: function (user) {
                 if (user) {
-                    alert("유저 정보 가져오기 성공");
-                    $('#lastname').text(data.lastname);
-                    $('#firstname').text(data.firstname);
+                    $('#username').text(user.lastname + " " + user.firstname);
+                    //$('#lastname').text(user.lastname);
+                    //$('#firstname').text(user.firstname);
                     /* input 태그는 val 형식으로 값 넣어줘야 함 */
-                    $("#email").val(data.email);
-                    $("#phone").val(data.phone);
-                    $("#city").val(data.city);
-                    $("#streetNumber").val(data.streetNumber);
-                    $("#zipcode").val(data.zipcode);
+                    $("#email").val(user.email);
+                    $("#phone").val(user.phone);
+                    $("#city").val(user.city);
+                    $("#street").val(user.street);
+                    $("#streetNumber").val(user.streetNumber);
+                    $("#zipcode").val(user.zipcode);
                 } else {
                     alert("조회하신 유저 정보가 없습니다.");
                 }
@@ -68,6 +68,27 @@
         // PutMapping
         $("#editBtn").click(function (event) {
             event.preventDefault();
+
+            // PUT method 이용해서 회원정보 수정
+            // api url 주소 = /api/
+
+            $.ajax({
+                url: `/api/user/edit/${userId}`,
+                method: 'PUT',
+                contentType: "application/json",
+                data: JSON.stringify({
+                    email: $('#email').val(),
+                    phone: $('#phone').val(),
+                    city : $("#city").val(),
+                    street : $("#street").val(),
+                    streetNumber : $("#streetNumber").val(),
+                    zipcode : $("#zipcode").val()
+                }),
+                success: function () {
+                    alert("성공");
+                    window.location.href = "/";
+                }
+            })
 
 
         })

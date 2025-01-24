@@ -22,5 +22,16 @@
         VALUES (#{email}, #{username}, #{password}, #{firstname}, #{lastname}, #{phone}, #{city}, #{street}, #{streetNumber}, #{zipcode})
     </insert>
 
+    <update id="updateUser">
+        UPDATE users
+        SET
+            email = #{email},
+            phone = #{phone},
+            city = #{city},
+            street = #{street},
+            street_number = #{streetNumber},
+            zipcode = #{zipcode}
+        WHERE id = #{id}
+    </update>
 
 </mapper>

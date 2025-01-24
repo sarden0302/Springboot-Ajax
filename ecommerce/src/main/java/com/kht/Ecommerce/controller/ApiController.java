@@ -83,8 +83,17 @@ public class ApiController {
         return userService.getUsersById(id);
     }
 
+    // 사용자 수정하기 api
+    // /api/user/edit/{id}
+    @PutMapping("/api/user/edit/{id}")
+    public void editUser(@PathVariable("id") int id, @RequestBody User user) {
+        user.setId(id);
+        userService.updateUser(user);
+    }
+
     @GetMapping("/api/products/{id}")
     public Products apiProductById(@PathVariable("id") int id) {
         return productService.getProductById(id);
     }
+
 }

@@ -13,4 +13,6 @@ public interface UserService {
     //Map<String, Object> existByEmail(String email);
 
     User getUsersById(int id);
+
+    void updateUser(User user);
 }

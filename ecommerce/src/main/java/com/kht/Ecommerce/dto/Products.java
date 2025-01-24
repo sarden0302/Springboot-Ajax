@@ -5,10 +5,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 
-@AllArgsConstructor
-@Getter
-@NoArgsConstructor
+
 @Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString
 public class Products {
     @Id
@@ -21,4 +22,5 @@ public class Products {
     private String image;
     private String ratingRate;
     private String ratingCount;
+
 }

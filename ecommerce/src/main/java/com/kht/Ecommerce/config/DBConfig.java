@@ -87,7 +87,7 @@ public class DBConfig {
         sessionFactoryBean.setMapperLocations(
                 applicationContext.getResources("classpath:/mappers/**.xml")  );
 
-        sessionFactoryBean.setTypeAliasesPackage("com.kht.ecommerce");
+        sessionFactoryBean.setTypeAliasesPackage("com.kht.ecommerce.dto");
 
         sessionFactoryBean.setConfigLocation(
                 applicationContext.getResource("classpath:mybatis-config.xml"));
