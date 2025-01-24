@@ -12,4 +12,6 @@ public interface ProductMapper {
     void addProduct();
 
     Products getProductById(int id);
+
+    void updateProduct(Products product);
 }

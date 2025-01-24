@@ -48,9 +48,15 @@ public class ViewController {
         return "user_detail";
     }
 
-    @GetMapping("/product")
+    @GetMapping("/products/")
     public String getProductById(@RequestParam("id") int id) {
         return "product_detail";
+    }
+
+    // RequestParam 은 url 에 작성 x
+    @GetMapping("/update/products")
+    public String updateProduct(@RequestParam("id") int id) {
+        return "updateProduct";
     }
 
 }

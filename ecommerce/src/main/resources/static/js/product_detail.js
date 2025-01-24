@@ -7,11 +7,15 @@ $(document).ready(function() {
         success : function(data) {
             if(data) {
                 $('#product-detail-container').html(`
-                    <div>이름 : ${data.title}</div>
-                    <div>이름 : ${data.description}</div>
-                    <div>이름 : ${data.category}</div>
-                    <div>이름 : ${data.price}</div>
-                    <div>이름 : ${data.image}</div>
+                    <div>이름 : ${data.id}</div>
+                    <img src="${data.image}" style="width: 200px; height: 200px;">
+                    <div>이메일 : ${data.title}</div>
+                    <div>이메일 : ${data.price}</div>
+                    <div>이메일 : ${data.description}</div>
+                    <div>이메일 : ${data.category}</div>
+                    <div>이메일 : ${data.ratingRate}</div>
+                    <div>이메일 : ${data.ratingCount}</div>
+                    <a href="/update/products?id=${data.id}">수정하기</a>
     
                 `);
             } else {

@@ -21,4 +21,6 @@
         INSERT into users (email, username, password, firstname, lastname, phone, city, street,street_number, zipcode)
         VALUES (#{email}, #{username}, #{password}, #{firstname}, #{lastname}, #{phone}, #{city}, #{street}, #{streetNumber}, #{zipcode})
     </insert>
+
+
 </mapper>

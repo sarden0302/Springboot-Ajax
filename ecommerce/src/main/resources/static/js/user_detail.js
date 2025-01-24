@@ -7,9 +7,7 @@ $(document).ready(function() {
         success : function(data) {
             if(data) {
                 $('#user-detail-container').html(`
-                    <div>이름 : ${data.username}</div>
-                    <div>이메일 : ${data.email}</div>
-                    <div>전화번호 : ${data.phone}</div>
+                    
                 `);
             } else {
                 $('#user-detail-container').html('현재 데이터가 비어있습니다.');

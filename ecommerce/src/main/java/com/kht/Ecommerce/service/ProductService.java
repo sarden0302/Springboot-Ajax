@@ -10,4 +10,6 @@ public interface ProductService {
     void addProduct();
 
     Products getProductById(int id);
+
+    void updateProduct(Products product);
 }

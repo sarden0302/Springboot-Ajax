@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제품 추가</title>
+    <link href="/favicon.ico" rel="icon">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link href="/css/styles.css" rel="stylesheet">
+</head>
+<body>
+<h1>제품 추가</h1>
+<form id="product-form">
+    <label for="title">제목:</label>
+    <input type="text" id="title" name="title" required>
+    <label for="price">가격:</label>
+    <input type="number" id="price" name="price" required>
+    <label for="description">설명:</label>
+    <textarea id="description" name="description" required></textarea>
+    <label for="category">카테고리:</label>
+    <input type="text" id="category" name="category" required>
+    <label for="image">이미지:</label>
+    <input type="text" id="image" name="image" value="https://via.placeholder.com/150" required>
+    <label for="rating_rate">평점:</label>
+    <input type="number" id="rating_rate" name="rating_rate" step="0.1" min="0" max="5" required>
+    <label for="rating_count">평점 수:</label>
+    <input type="number" id="rating_count" name="rating_count" required>
+    <button type="submit">추가</button>
+</form>
+
+<script>
+    $(document).ready(function () {
+        // 1. 제품 상세보기에 작성한 제품 불러오기 api
+        const id = new URLSearchParams(window.location.search).get("id");
+        console.log("userId : " + id);
+        $.ajax({
+            url: `/api/products/${id}`,
+            method: "GET",
+            success : function(data) {
+                if(data) {
+                    $("#title").val(data.title);
+                    $("#price").val(data.price);
+                    $("#description").val(data.description);
+                    $("#category").val(data.category);
+                    $("#image").val(data.image);
+                    $("#ratingRate").val(data.ratingRate);
+                    $("#ratingCount").val(data.ratingCount);
+                } else {
+                    $('#productDetail').html('현재 데이터가 비어있습니다.');
+                }
+            },
+            error: function(error) {
+                alert('사용자 정보 가져오던 중 에러가 발생했습니다.');
+            }
+        })
+
+        // 2. 제품 수정하기 put api 사용
+        $("#product-form").on("submit", function (event) {
+            event.preventDefault();
+
+        })
+    })
+</script>
+</body>
+</html>

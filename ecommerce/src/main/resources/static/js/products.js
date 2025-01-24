@@ -13,7 +13,7 @@ $(document).ready(function () {
                             <img src="${product.image}" alt="${product.title}">
                             <h3>${product.title}</h3>
                             <p>${product.price}</p>
-                            <a href="/product?id=${product.id}">사용자 상세정보</a>
+                            <a href="/products/?id=${product.id}">사용자 상세정보</a>
                         </div>
                         `;
                     });

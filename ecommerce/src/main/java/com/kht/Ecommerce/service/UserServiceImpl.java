@@ -14,7 +14,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
 
-    @Autowired
+    // SecurityConfig 내부에 @Bean 태그로 설정한 BCrypto 호출해서 비밀번호 암호화 사용
+    @Autowired  // @Autowired : 다른 곳에서 작성된 속성이나 객체 파일을 호출하기
     private PasswordEncoder passwordEncoder;
 
     @Override
@@ -31,7 +32,7 @@ public class UserServiceImpl implements UserService {
         // khtUser.setPassword => 암호화된 비밀번호를 DB에 저장
         String encodePassword = passwordEncoder.encode(user.getPassword());
 
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));   // 복구 불가능
 
         System.out.println("암호화 완료된 비밀번호 확인 : " + encodePassword); // 위에서 작성한 암호 확인하기
         userMapper.insertUser(user); // return 필요 없음
