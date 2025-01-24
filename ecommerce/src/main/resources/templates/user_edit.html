@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link rel="icon" href="/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+<h1>유저 수정하기</h1>
+<form >
+    <label>유저 이름 : </label>
+    <p id="lastname"></p>
+    <p id="firstname"></p>
+
+    <label for="email">이메일 : </label>
+    <input type="email" id="email">
+
+    <label for="phone">핸드폰 번호 : </label>
+    <input type="number" id="phone">
+
+    <label for="city">사는 곳 : </label>
+    <input type="text" id="city">
+
+    <label for="street">도로 명 : </label>
+    <input type="text" id="street">
+
+    <label for="streetNumber">도로 번호 : </label>
+    <input type="number" id="streetNumber">
+
+    <label for="zipcode">우편번호 : </label>
+    <input type="text" id="zipcode">
+
+    <button type="button" id="editBtn">수정하기</button>
+</form>
+
+<script>
+    $(document).ready(function () {
+        const userId = new URLSearchParams(window.location.search).get("id");
+        console.log("userId : " + userId);
+        // id 값으로 유저 상세정보 불러오기 ajax
+        $.ajax({
+            url: `/api/user/${userId}`,
+            method: "GET",
+            success: function (users) {
+                if (user) {
+                    alert("유저 정보 가져오기 성공");
+                    $('#lastname').text(data.lastname);
+                    $('#firstname').text(data.firstname);
+                    /* input 태그는 val 형식으로 값 넣어줘야 함 */
+                    $("#email").val(data.email);
+                    $("#phone").val(data.phone);
+                    $("#city").val(data.city);
+                    $("#streetNumber").val(data.streetNumber);
+                    $("#zipcode").val(data.zipcode);
+                } else {
+                    alert("조회하신 유저 정보가 없습니다.");
+                }
+            },
+            error : function () {
+                alert("예기치 못한 에러 발생")
+            }
+
+        })
+
+
+        // PutMapping
+        $("#editBtn").click(function (event) {
+            event.preventDefault();
+
+
+        })
+
+    })
+
+</script>
+</body>
+</html>

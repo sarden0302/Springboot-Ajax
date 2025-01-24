@@ -48,6 +48,11 @@ public class ViewController {
         return "user_detail";
     }
 
+    @GetMapping("/user/edit")
+    public String editUserById(@RequestParam("id") int id) {
+        return "user_edit";
+    }
+
     @GetMapping("/products/")
     public String getProductById(@RequestParam("id") int id) {
         return "product_detail";

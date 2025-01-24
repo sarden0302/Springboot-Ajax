@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kht.Ecommerce.mapper.UserMapper">
     <select id="getAllUsers">
-      SELECT id, firstname, lastname, phone
+      SELECT *
       FROM users;
     </select>
 
@@ -14,7 +14,7 @@
     </select>
 
     <select id="getUsersById">
-        SELECT id, firstname, lastname, email, phone FROM users WHERE id = #{id}
+        SELECT * FROM users WHERE id = #{id}
     </select>
 
     <insert id="insertUser">

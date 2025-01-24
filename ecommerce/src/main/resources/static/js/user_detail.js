@@ -7,7 +7,14 @@ $(document).ready(function() {
         success : function(data) {
             if(data) {
                 $('#user-detail-container').html(`
-                    
+                    <p>${data.firstname} ${data.lastname}</p>
+                    <p>${data.email}</p>
+                    <p>${data.username}</p>
+                    <p>${data.password}</p>
+                    <p>${data.phone}</p>
+                    <p>${data.city}</p>
+                    <p>${data.street}</p>
+                    <a href="/user/edit?id=${data.id}">정보 수정하기</a>
                 `);
             } else {
                 $('#user-detail-container').html('현재 데이터가 비어있습니다.');

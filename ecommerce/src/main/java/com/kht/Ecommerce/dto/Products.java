@@ -15,10 +15,10 @@ public class Products {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
-    private int price;
+    private String price;
     private String description;
     private String category;
     private String image;
-    private double ratingRate;
-    private int ratingCount;
+    private String ratingRate;
+    private String ratingCount;
 }
