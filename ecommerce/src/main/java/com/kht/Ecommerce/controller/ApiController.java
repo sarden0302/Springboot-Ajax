@@ -86,9 +86,10 @@ public class ApiController {
     // 사용자 수정하기 api
     // /api/user/edit/{id}
     @PutMapping("/api/user/edit/{id}")
-    public void editUser(@PathVariable("id") int id, @RequestBody User user) {
+    //                   경로 or 주소                   Body 에 작성된 데이터 param : 특정 부분만 전달
+    public int editUser(@PathVariable("id") int id, @RequestBody User user) {
         user.setId(id);
-        userService.updateUser(user);
+        return userService.updateUser(user);
     }
 
     @GetMapping("/api/products/{id}")

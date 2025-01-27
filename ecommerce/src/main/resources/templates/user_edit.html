@@ -75,7 +75,8 @@
             $.ajax({
                 url: `/api/user/edit/${userId}`,
                 method: 'PUT',
-                contentType: "application/json",
+                // POST 와 PUT 은 contentType && data 필수!
+                contentType: "application/json", // 글자형식만 전송
                 data: JSON.stringify({
                     email: $('#email').val(),
                     phone: $('#phone').val(),
@@ -84,15 +85,15 @@
                     streetNumber : $("#streetNumber").val(),
                     zipcode : $("#zipcode").val()
                 }),
-                success: function () {
-                    alert("성공");
-                    window.location.href = "/";
+                success: function (data) { // contentType 으로 data 전송 성공
+                    alert("성공!! " + data + "개 수정");
+                    window.location.href = `/user?id=${userId}`;
+                },
+                error : function () {
+                    alert("데이터 로딩 실패");
                 }
             })
-
-
         })
-
     })
 
 </script>

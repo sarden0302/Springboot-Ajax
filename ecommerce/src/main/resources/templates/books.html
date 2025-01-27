@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>책 목록 조회</title>
+    <link rel="icon" href="/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link href="/css/book-styles.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h1 class="title">책 목록</h1>
+    <table class="book-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>제목</th>
+            <th>저자</th>
+            <th>장르</th>
+            <th>이미지</th>
+        </tr>
+        </thead>
+        <tbody id="book-list">
+
+        </tbody>
+    </table>
+</div>
+<script>
+    $.ajax({
+        /*
+        HTTP Status 404 - Not Found
+        frontend 에서 문제가 아니라
+        json WEB - controller - db 서로 상호작용 xxx
+         */
+        url: "/api/bookList", // 컴퓨터는 books 로 읽기 때문에 충돌 발생 가능
+        method: "GET",
+        success: function(data) {
+            $.each(data, function(index, book) {
+                $('#book-list').append(`
+                    <tr>
+                        <td><a href="/book?id=${book.id}">${book.id}</a></td>
+                        <td><a href="/book?id=${book.id}">${book.title}</a></td>
+                        <td><a href="/book?id=${book.id}">${book.author}</a></td>
+                        <td><a href="/book?id=${book.id}">${book.genre}</a></td>
+                        <td><img src="${book.imagePath ? book.imagePath : '/image/defaultImg.png'}"></td>
+                        <td><a href="/book?id=${book.id}">이동</a></td>
+                    </tr>
+                `);
+            })
+        },
+        error: function() {
+            $("#book-list").html("백엔드에서 데이터를 가져올 수 없습니다.");
+        }
+
+    })
+</script>
+
+</body>
+</html>

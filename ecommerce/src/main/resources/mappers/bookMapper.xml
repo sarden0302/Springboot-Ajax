@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kht.Ecommerce.mapper.BookMapper">
+    <select id="findAll">
+        SELECT * FROM khtbook
+    </select>
+
+    <select id="findById">
+        SELECT * FROM khtbook
+        where id=#{id}
+    </select>
+
+    <insert id="insertBook">
+        INSERT INTO khtbook (title, author, genre, image_path)
+        values (#{title}, #{author}, #{genre}, #{imagePath})
+    </insert>
+
+    <update id="updateBook">
+        UPDATE khtbook
+        SET
+            title=#{title},
+            author=#{author},
+            genre=#{genre},
+            image_path=#{imagePath}
+        WHERE id=#{id}
+    </update>
+</mapper>

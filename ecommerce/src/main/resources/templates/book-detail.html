@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>책 정보 상세보기</title>
+    <link href="/css/book-styles.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1 class="title">책 상세보기</h1>
+    <div id="book-detail" class="book-detail">
+    </div>
+
+</div>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+    // ? 뒤에 오는 key value 값 모두 params 로 선언
+    const id = params.get('id');
+    // params 내부에 선언된 id key 에 해당하는 value 값 데이터 조회
+    console.log("product detail id = " + id);
+    $.ajax({
+        url: `/api/book/${id}`,
+        method: 'GET',
+        success: function (book) {
+            if (book) {
+                if (book.imagePath) {
+                    $('#book-detail').html(`<img src="${book.imagePath}">`);
+                } else {
+                    $('#book-detail').html(``);
+                }
+                $('#book-detail').append(
+                    `
+                    <h1><strong>ID:${book.id}</strong></h1>
+                    <p><strong>제목:${book.title}</strong></p>
+                    <p><strong>저자:${(book.author)}</strong></p>
+                    <p><strong>장르:${(book.genre)}</strong></p>
+                    <a href="/books/update?id=${id}">수정하기</a>`
+                );
+
+
+            }  else { // DB에서 해당 데이터가 0인 상태
+                $('#book-detail').html('<p>존재하는 데이터가 없습니다.</p>');
+
+            }
+        },
+        error: function () {
+            $('#book-detail').html('<p>백엔드 api에서 데이터를 가져오는 문제가 발생했습니다.</p>');
+        }
+    });
+</script>
+</body>
+</html>

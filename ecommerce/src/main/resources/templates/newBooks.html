@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>책 등록하기</title>
+    <link rel="icon" href="/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        body {
+            line-height: 1.6;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #bookList {
+            list-style: none;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 300px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 3px 1px -2px rgba(0, 0, 0, 0.12);
+        }
+
+        #bookList td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #bookList td:last-child {
+            border-bottom: none;
+        }
+
+        form {
+            max-width: 300px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 3px 1px -2px rgba(0, 0, 0, 0.12);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+        }
+        button:hover {
+            background-color: #0056ff;
+        }
+        alert {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h1>📝 책 등록하기</h1>
+<!--
+    1. form 태그를 이용해서 form 태그 내에 작성한 id 값으로 submit 해서 데이터 저장
+    2. form 태그 내 button type 을 button 형식으로 변경하고 click 해서 데이터 저장
+    3. div  태그 내 butto type 을 button 형식으로 변경하고 click 해서 데이터 저장
+-->
+<div id="book">
+    <label for="title">제목 : </label>
+    <input type="text" id="title" name="title" placeholder="책 제목 입력" required>
+
+    <label for="author">저자 : </label>
+    <input type="text" id="author" name="author" placeholder="책 저자 입력" required>
+
+    <label for="genre">장르 : </label>
+    <input type="text" id="genre" name="genre" placeholder="책 장르 입력" required>
+
+    <label for="imagePath">이미지 선택</label>
+    <input type="file" id="imagePath" required>
+
+    <button type="button" id="saveBook">등록하기</button> <!-- button type="submit" 기본값! -->
+
+</div>
+<script>
+    $('#saveBook').click(function() {
+        let title = $('#title').val();
+        let author = $('#author').val();
+        let genre = $('#genre').val();
+        // Multipart data 를 전송할 때 필요한 코드가 추가되어 있다.
+        let formData = new FormData(); // 이미지 데이터를 포함해서 전달하는 기능 사용
+        formData.append("title", title);
+        formData.append("author", author);
+        formData.append("genre", genre);
+        formData.append("file", $("#imagePath")[0].files[0]);
+
+        $.ajax({
+            url: "/api/bookSaveImg",
+            method: "POST",
+            processData: false, // FormData 를 전송할 때 필요
+            contentType: false, // FormData 를 전송할 때 필요
+            data: formData,
+            success: function() {
+                alert("새로운 책이 성공적으로 등록되었습니다.");
+                // 실행 완료 후 redirect
+                // window = 화면 창     location = 지역     href = 주소
+                window.location.href = "/books";    // ViewController 에서 책 목록 확인하는 api 주소
+                // 만약에 창 이동을 하지 않을 경우 기존에 작성한 title, author, genre .val('') 을 넣어 값 비우기
+            },
+            error: function() {
+                alert("책 등록에 실패했습니다.");
+            }
+        })
+    });
+</script>
+</body>
+</html>
