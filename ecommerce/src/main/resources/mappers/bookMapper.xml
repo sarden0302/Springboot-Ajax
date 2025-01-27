@@ -16,7 +16,7 @@
         values (#{title}, #{author}, #{genre}, #{imagePath})
     </insert>
 
-    <update id="updateBook">
+    <update id="updateById">
         UPDATE khtbook
         SET
             title=#{title},

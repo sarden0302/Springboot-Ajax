@@ -9,22 +9,24 @@
     <link href="/css/book-styles.css" rel="stylesheet">
 </head>
 <body>
-<h1>책 수정하기</h1>
-<form >
-    <label>책 제목 : </label>
-    <span id="title"></span>
+<div class="container">
+    <h1 class="title">책 수정하기</h1>
+    <form id="edit-form" class="edit-form">
+        <label for="title">제목:</label>
+        <input type="text" id="title" name="title" required>
 
-    <label for="author">저자 : </label>
-    <input type="text" id="author">
+        <label for="author">저자:</label>
+        <input type="text" id="author" name="author" required>
 
-    <label for="genre">장르 : </label>
-    <input type="text" id="genre">
+        <label for="genre">장르:</label>
+        <input type="text" id="genre" name="genre" required>
 
-    <label for="imagePath">이미지 선택</label>
-    <input type="text" id="imagePath" required>
+        <label for="imagePath">이미지 경로:</label>
+        <input type="text" id="imagePath" name="imagePath" required>
 
-    <button type="button" id="editBtn">수정하기</button>
-</form>
+        <button type="submit" class="btn">수정 완료</button>
+    </form>
+</div>
 <script>
     $(document).ready(function () {
         const userId = new URLSearchParams(window.location.search).get("id");
@@ -42,37 +44,11 @@
             }
         })
 
-
-        // put
-        /*
-        $('#editBtn').click(function (event) {
+        $('#edit-form').submit(function (event) {
             event.preventDefault();
             $.ajax({
-                url: `/api/books/${userId}/update`,
-                method: "PUT",
-                processData: false, // FormData 를 전송할 때 필요
-                contentType: false, // FormData 를 전송할 때 필요
-                data: JSON.stringify({
-                    title: $('#title').val(),
-                    author: $('#author').val(),
-                    genre: $('#genre').val(),
-                    imagePath: $('#imagePath').val(),
-                }),
-                success: function (data) {
-                    alert(data + "개 수정!");
-                    window.location.href = `/book?id=${userId}`;
-                },
-                error: function () {
-                    alert("책 수정 중 에러 발생!");
-                }
-            })
-        })*/
-        // put
-        $('#editBtn').click(function (event) {
-            event.preventDefault();
-            $.ajax({
-                url: `/api/books/${userId}/update`,
-                method: "PUT",
+                url: `/api/books/${userId}/update`, // parameter 로 받는 것이 아니기 때문에 중간에 작성 가능
+                method: "PUT",  // POST 로 데이터가 수정이 되긴 하지만 restful 개념에 어긋나기 때문에 PUT 으로 작성할 것
                 contentType: "application/json", // FormData 를 전송할 때 필요
                 data: JSON.stringify({
                     title: $('#title').val(),

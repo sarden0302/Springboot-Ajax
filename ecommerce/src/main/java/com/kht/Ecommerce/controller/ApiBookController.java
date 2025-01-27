@@ -1,6 +1,7 @@
 package com.kht.Ecommerce.controller;
 
 import com.kht.Ecommerce.dto.KHTBook;
+import com.kht.Ecommerce.service.BookService;
 import com.kht.Ecommerce.service.BookServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,8 @@ public class ApiBookController {
 
     @Autowired
     private BookServiceImpl khtBookService;
+    @Autowired
+    private BookService bookService;
 
     @GetMapping("/bookList")
     public List<KHTBook> books() {
@@ -36,18 +39,18 @@ public class ApiBookController {
     }
     */
     @PostMapping("/bookSaveImg")
-    public KHTBook saveBookImg(@RequestParam("title") String title,
+    public void saveBookImg(@RequestParam("title") String title,
                                @RequestParam("author") String author,
                                @RequestParam("genre") String genre,
                                @RequestParam("file") MultipartFile file) {
-        return null;
+        khtBookService.insertBook(title, author, genre, file);
     }
 
     @PutMapping("/books/{id}/update")
     public int updateBooks(@PathVariable("id") int id,
                            @RequestBody KHTBook khtBook) {
         khtBook.setId(id);
-        return 1;
+        return bookService.updateById(khtBook);
     }
 
 }

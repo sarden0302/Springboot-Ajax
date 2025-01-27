@@ -1,6 +1,7 @@
 package com.kht.Ecommerce.service;
 
 import com.kht.Ecommerce.dto.KHTBook;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ public interface BookService {
 
     KHTBook findById(int id);
 
-    int insertBook(KHTBook book);
+    void insertBook(String title, String author, String genre, MultipartFile file);
 
-    int updateBook(KHTBook book);
+    int updateById(KHTBook book);
 }

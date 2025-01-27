@@ -13,7 +13,7 @@ public interface BookMapper {
 
     KHTBook findById(int id);
 
-    int insertBook(KHTBook book);
+    void insertBook(KHTBook book);
 
-    int updateBook(KHTBook book);
+    int updateById(KHTBook book);
 }

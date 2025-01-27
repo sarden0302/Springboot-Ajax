@@ -32,12 +32,19 @@ public class ViewBookController {
         @   Mapping(value = "url 명칭 / api 명칭", 주소 값 뒤나 중간에 사용할 파라미터가 존재하는가?
         params 은 {} 가 default 값으로 지정되어 있다.
      */
+    /* url 주소 값을 작성할 때
+     ? 물음표가 들어가는 파라미터는 맨 마지막에 작성
+          /         /       ? 올바른 예
+          /         ?       / 잘못된 예
+     parameter 중간에 위치한 값을 찾지 못하는 경우 많음
+     ? parameter 는 항상 맨 마지막에 작성
+     */
     @GetMapping(value = "/books", params = "id")    // 1. /books/detail?id=아이디값     // 2. params = "id" 추가
     public String getBookById(@RequestParam("id") int id) {
         return "book-detail";
     }
 
-    @GetMapping("/book/add")
+    @GetMapping("/books/add")
     public String saveBook() {
         return "newBooks";
     }
