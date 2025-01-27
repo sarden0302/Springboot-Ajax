@@ -53,8 +53,49 @@ public class BookServiceImpl implements BookService{
         bookMapper.insertBook(khtBook);
     }
 
+    /*
     @Override
-    public int updateById(KHTBook book) {
-        return 0;
+    public int updateById(int id, String title, String author, String genre, MultipartFile imagePath) {
+        String filename = System.currentTimeMillis() + "_ " +  imagePath.getOriginalFilename();
+
+        //                          경로   + 파일명칭
+        File saveFile = new File(uploadBookImg, filename);
+
+        // 1. 이미지 저장하기
+        try {
+            imagePath.transferTo(saveFile);
+        } catch (IOException e) {
+            System.out.println("이미지 저장 실패!");
+        }
+        return bookMapper.updateById(id, title, author, genre, imagePath);
+    }*/
+
+
+    @Override
+    public int updateById(String title, String author, String genre, MultipartFile file, KHTBook khtBook) {
+        String filename = System.currentTimeMillis() + "_ " +  file.getOriginalFilename();
+
+        //                          경로   + 파일명칭
+        File saveFile = new File(uploadBookImg, filename);
+
+        // 1. 이미지 저장하기
+        try {
+            file.transferTo(saveFile);
+        } catch (IOException e) {
+            System.out.println("이미지 저장 실패!");
+        }
+        khtBook.setTitle(title);
+        khtBook.setAuthor(author);
+        khtBook.setGenre(genre);
+        // 진짜 저장된 이미지 장소를 숨기고 사용자들에게는 images 경로로 보여주게끔 설정
+        khtBook.setImagePath("/images/" + filename);
+        return bookMapper.updateById(khtBook);
     }
+
+    @Override
+    public int deleteById(int id) {
+        return bookMapper.deleteById(id);
+    }
+
+
 }

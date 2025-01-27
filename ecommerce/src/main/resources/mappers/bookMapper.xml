@@ -25,4 +25,9 @@
             image_path=#{imagePath}
         WHERE id=#{id}
     </update>
+
+    <delete id="deleteById">
+        DELETE FROM khtbook
+        WHERE id = #{id}
+    </delete>
 </mapper>

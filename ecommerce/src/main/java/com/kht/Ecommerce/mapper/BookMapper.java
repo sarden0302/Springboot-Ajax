@@ -2,6 +2,7 @@ package com.kht.Ecommerce.mapper;
 
 import com.kht.Ecommerce.dto.KHTBook;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -16,4 +17,6 @@ public interface BookMapper {
     void insertBook(KHTBook book);
 
     int updateById(KHTBook book);
+
+    int deleteById(int id);
 }

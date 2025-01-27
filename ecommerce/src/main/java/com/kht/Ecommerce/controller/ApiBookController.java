@@ -3,12 +3,14 @@ package com.kht.Ecommerce.controller;
 import com.kht.Ecommerce.dto.KHTBook;
 import com.kht.Ecommerce.service.BookService;
 import com.kht.Ecommerce.service.BookServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
+@Slf4j
 @RequestMapping("/api")
 @RestController
 public class ApiBookController {
@@ -42,15 +44,23 @@ public class ApiBookController {
     public void saveBookImg(@RequestParam("title") String title,
                                @RequestParam("author") String author,
                                @RequestParam("genre") String genre,
-                               @RequestParam("file") MultipartFile file) {
-        khtBookService.insertBook(title, author, genre, file);
+                               @RequestParam("imagePath") MultipartFile imagePath) {
+        khtBookService.insertBook(title, author, genre, imagePath);
     }
 
     @PutMapping("/books/{id}/update")
     public int updateBooks(@PathVariable("id") int id,
-                           @RequestBody KHTBook khtBook) {
-        khtBook.setId(id);
-        return bookService.updateById(khtBook);
+                           @RequestParam("title") String title,
+                           @RequestParam("author") String author,
+                           @RequestParam("genre") String genre,
+                           @RequestParam("imagePath") MultipartFile imagePath) {
+        log.info("KHTBook PutMapping : {}, {}, {}, {}, {}", id, title, author, genre, imagePath);
+        KHTBook khtBook = khtBookService.findById(id);
+        return bookService.updateById(title, author, genre, imagePath, khtBook);
     }
 
+    @DeleteMapping("/delete/{id}")
+    public int deleteBook(@PathVariable("id") int id) {
+        return bookService.deleteById(id);
+    }
 }

@@ -21,8 +21,15 @@
         <label for="genre">장르:</label>
         <input type="text" id="genre" name="genre" required>
 
-        <label for="imagePath">이미지 경로:</label>
-        <input type="text" id="imagePath" name="imagePath" required>
+
+        <label for="imagePath">이미지:</label>
+        <input type="file" id="imagePath" name="imagePath" required>
+
+        <div class="image-preview-container">
+            <div class="image-preview" id="imagePreview">
+                <span>미리보기 이미지가 여기에 표시됩니다.</span>
+            </div>
+        </div>
 
         <button type="submit" class="btn">수정 완료</button>
     </form>
@@ -44,23 +51,52 @@
             }
         })
 
+        $('#imagePath').change(function (event) {
+            const file = event.target.files[0];
+            //const preview = document.getElementById("imagePreview");
+            //preview.innerHTML = "";
+            $('#preview').html('');
+
+            if (file && file.type.startsWith("image/")) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    console.log("reader.result : ", e.target.result);
+                    $('#imagePreview').append($('<img>').attr({
+                        "src": e.target.result,
+                        "alt" : "미리보기 이미지",
+                        "maxWidth" : "100%",
+                        "maxHeight" : "300px"
+                    }));
+                };
+                reader.readAsDataURL(file);
+            } else {
+                preview.innerHTML = "<span>지원하지 않는 파일 형식입니다.</span>";
+            }
+        });
+
         $('#edit-form').submit(function (event) {
             event.preventDefault();
+            let title = $('#title').val();
+            let author = $('#author').val();
+            let genre = $('#genre').val();
+            // Multipart data 를 전송할 때 필요한 코드가 추가되어 있다.
+            let formData = new FormData(); // 이미지 데이터를 포함해서 전달하는 기능 사용
+            formData.append("title", title);
+            formData.append("author", author);
+            formData.append("genre", genre);
+            formData.append("imagePath", $("#imagePath")[0].files[0]);
             $.ajax({
                 url: `/api/books/${userId}/update`, // parameter 로 받는 것이 아니기 때문에 중간에 작성 가능
                 method: "PUT",  // POST 로 데이터가 수정이 되긴 하지만 restful 개념에 어긋나기 때문에 PUT 으로 작성할 것
-                contentType: "application/json", // FormData 를 전송할 때 필요
-                data: JSON.stringify({
-                    title: $('#title').val(),
-                    author: $('#author').val(),
-                    genre: $('#genre').val(),
-                    imagePath: $('#imagePath').val(),
-                }),
+                contentType: false, // FormData 를 전송할 때 필요
+                processData: false,
+                data: formData,
                 success: function (data) {
                     alert(data + "개 수정!");
-                    window.location.href = `/book?id=${userId}`;
+                    window.location.href = `/books?id=${userId}`;
                 },
-                error: function () {
+                error: function (error) {
+                    console.log("data : ", error);
                     alert("책 수정 중 에러 발생!");
                 }
             })

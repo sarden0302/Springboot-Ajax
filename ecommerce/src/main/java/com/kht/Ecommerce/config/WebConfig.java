@@ -11,7 +11,10 @@ public class WebConfig implements WebMvcConfigurer {
     @Value("${upload-img}")
     private String uploadImg;
 
+    // 이미지 처리할 때 1. static 폴더 아래 이미지
+    //               2. 업로드 폴더 위치 이미지 설정
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+
         // resources
         registry.addResourceHandler("/images/**") // 외부에서 보여질 가짜 이미지 경로 (암호화)
                 .addResourceLocations("file:" + uploadImg + "/images/users/", "file:" + uploadImg + "/images/books/"); // 실제 저장되는 진짜 이미지 경로
