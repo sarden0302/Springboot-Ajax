@@ -31,15 +31,15 @@
         console.log("userId : " + userId);
         // userId 값으로 유저 상세정보 불러오기
         $.ajax({
-            url: `/api/book/${userId}`,
+            url: `/api/books/${userId}`,
             method: 'GET',
             success: function (book) {
+                //$('#title').book.val();
                 $('#title').val(book.title);
                 $('#genre').val(book.genre);
                 $('#author').val(book.author);
                 $('#imagePath').val(book.imagePath);
             }
-
         })
 
 

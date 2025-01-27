@@ -22,28 +22,20 @@
     // params 내부에 선언된 id key 에 해당하는 value 값 데이터 조회
     console.log("product detail id = " + id);
     $.ajax({
-        url: `/api/book/${id}`,
+        url: `/api/books/${id}`,
         method: 'GET',
         success: function (book) {
             if (book) {
-                if (book.imagePath) {
-                    $('#book-detail').html(`<img src="${book.imagePath}">`);
-                } else {
-                    $('#book-detail').html(``);
-                }
-                $('#book-detail').append(
-                    `
-                    <h1><strong>ID:${book.id}</strong></h1>
-                    <p><strong>제목:${book.title}</strong></p>
-                    <p><strong>저자:${(book.author)}</strong></p>
-                    <p><strong>장르:${(book.genre)}</strong></p>
-                    <a href="/books/update?id=${id}">수정하기</a>`
-                );
-
-
+                $("#book-detail").html(`
+                        <p><strong>이미지 :</strong> <img class="book-image" src="${book.imagePath ? book.imagePath : '/image/defaultImg.png'}"></p>
+                        <p><strong>책 제목 :</strong> ${book.title}</p>
+                        <p><strong>저자 : </strong> ${book.author}</p>
+                        <p><strong>장르 : </strong> ${book.genre}</p>
+                        <!-- URLSearchParmas 에서 가져온 id 값으로 해당하는 데이터 수정 경로 설정 -->
+                        <a href="/books/?id=${id}/update" class="btn" id="edit-btn">수정하기</a>
+                    `);
             }  else { // DB에서 해당 데이터가 0인 상태
                 $('#book-detail').html('<p>존재하는 데이터가 없습니다.</p>');
-
             }
         },
         error: function () {

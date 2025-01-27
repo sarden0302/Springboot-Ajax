@@ -20,7 +20,7 @@ public class ApiBookController {
         return khtBookService.findAll();
     }
 
-    @GetMapping("/book/{id}") // id 조회
+    @GetMapping("/books/{id}") // id 조회
     public KHTBook book(@PathVariable("id") int id) {
         return khtBookService.findById(id);
     }
