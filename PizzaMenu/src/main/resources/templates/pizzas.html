@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>피자 메뉴 관리</title>
+    <link rel="stylesheet" href="/css/pizza-style.css">
+</head>
+<body>
+<div class="container">
+    <h1>피자 메뉴</h1>
+    <table id="pizza-list">
+        <thead>
+        <tr>
+            <th>이름</th>
+            <th>가격</th>
+            <th>이미지</th>
+            <th>액션</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- JQuery로 데이터 추가 -->
+        </tbody>
+    </table>
+    <a href="/add-pizza.html">메뉴 추가</a>
+</div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+
+    $.ajax({
+        url:'/api/pizzamenu',
+        method: 'GET',
+        success: function (pizzas) {
+            if (!pizzas) {
+                alert("no data");
+                return;
+            }
+            $.each(pizzas, function (index, pizza) {
+                $('#pizza-list tbody').append(`
+                        <tr>
+                            <td>${pizza.name}</td>
+                            <td>${pizza.price}</td>
+                            <td><img src="${pizza.imagePath}" alt="이미지" style="width: 50px;"></td>
+                            <td>
+                                <a href="/pizzas/edit?id=${pizza.id}">수정</a>
+                                <button >삭제</button>
+                            </td>
+                        </tr>
+                    `);
+            })
+        },
+        error: function () {
+            alert("error ");
+        }
+    });
+</script>
+</body>
+</html>
