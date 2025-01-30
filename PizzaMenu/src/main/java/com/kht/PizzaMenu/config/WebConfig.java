@@ -17,6 +17,6 @@ public class WebConfig implements WebMvcConfigurer {
 
         // resources
         registry.addResourceHandler("/images/**") // 외부에서 보여질 가짜 이미지 경로 (암호화)
-                .addResourceLocations("file:" + uploadImg + "/images/users/", "file:" + uploadImg + "/images/pizzas/"); // 실제 저장되는 진짜 이미지 경로
+                .addResourceLocations("file:" + uploadImg + "/images/pizzas/"); // 실제 저장되는 진짜 이미지 경로
     }
 }

@@ -11,4 +11,6 @@ public interface PizzaMenuMapper {
     List<PizzaMenu> getAllPizzaMenu();
 
     PizzaMenu getPizzaMenuById(int id);
+
+    int updatePizzaMenu(PizzaMenu pizzaMenu);
 }

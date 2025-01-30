@@ -10,4 +10,14 @@
         SELECT * FROM pizzamenu
         WHERE id = #{id}
     </select>
+
+    <update id="updatePizzaMenu">
+        UPDATE pizzamenu
+        SET
+            name = #{name},
+            price = #{price},
+            description = #{description},
+            image_path = #{imagePath}
+        WHERE id = #{id}
+    </update>
 </mapper>

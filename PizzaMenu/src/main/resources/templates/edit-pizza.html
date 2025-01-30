@@ -54,6 +54,33 @@
             }
         })
 
+        $("#edit-form").on("submit", function (event) {
+            event.preventDefault();
+
+            let formData = new FormData();
+            formData.append("name", $('#name').val());
+            formData.append("price", $('#price').val());
+            formData.append("description", $('#description').val());
+            formData.append("imagePath", $('#imagePath')[0].files[0]);
+
+            $.ajax({
+                url: `/api/pizza/edit/${pizzaId}`,
+                method: 'PUT',
+                contentType: false,
+                processData: false,
+                data: formData,
+                success: function (data) {
+                    alert(data + "개 수정");
+                    window.location.href = `/pizzas/detail?id=${pizzaId}`;
+                },
+                error : function (error) {
+                    alert("피자 수정 중 에러 발생!");
+                }
+
+
+            })
+        })
+
 
 
     })

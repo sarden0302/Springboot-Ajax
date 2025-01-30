@@ -31,7 +31,7 @@ public class PizzaViewController {
      * URL: /pizzas/detail?id={id}
      * 반환: pizza-detail.html
      */
-    @GetMapping("/pizzas/detail")
+    @GetMapping(value = "/pizzas/detail", params = "id")
     public String showPizzaDetail(@RequestParam("id") int id) {
         // pizza-detail.html에서 id를 URL 파라미터로 사용
         return "pizza-detail"; // src/main/resources/templates/pizza-detail.html
@@ -42,7 +42,7 @@ public class PizzaViewController {
      * URL: /pizzas/edit?id={id}
      * 반환: edit-pizza.html
      */
-    @GetMapping("/pizzas/edit")
+    @GetMapping(value = "/pizzas/edit", params = "id")
     public String showEditPizzaForm(@RequestParam("id") int id) {
         // edit-pizza.html에서 id를 URL 파라미터로 사용
         return "edit-pizza"; // src/main/resources/templates/edit-pizza.html
