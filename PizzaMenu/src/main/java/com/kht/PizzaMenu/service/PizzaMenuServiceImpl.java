@@ -31,7 +31,7 @@ public class PizzaMenuServiceImpl implements PizzaMenuService{
 
     @Override
     public int updatePizzaMenu(String name, int price, String description, MultipartFile file, PizzaMenu pizzaMenu) {
-        String filename = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+        String filename = System.currentTimeMillis() + "_ " + file.getOriginalFilename();
 
         File saveFile = new File(uploadPizzaMenu + filename);
 

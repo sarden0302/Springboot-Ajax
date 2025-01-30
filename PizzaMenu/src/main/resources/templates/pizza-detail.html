@@ -8,6 +8,44 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
-
+<div class="container">
+    <h1>피자 메뉴</h1>
+    <table id="pizza-list">
+        <thead>
+        <tr>
+            <th>이름</th>
+            <th>가격</th>
+            <th>이미지</th>
+            <th>액션</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- JQuery로 데이터 추가 -->
+        </tbody>
+    </table>
+</div>
+<script>
+    const pizzaId = new URLSearchParams(window.location.search).get("id");
+    $.ajax({
+        url:`/api/pizza/${pizzaId}`,
+        method: 'GET',
+        success: function (pizza) {
+            if (!pizza) {
+                alert("no data");
+                return;
+            }
+            $('#pizza-list tbody').append(`
+                    <tr>
+                        <td>${pizza.name}</td>
+                        <td>${pizza.price}</td>
+                        <td><img src="${pizza.imagePath}" alt="이미지" style="width: 50px;"></td>
+                    </tr>
+                `);
+        },
+        error: function () {
+            alert("error ");
+        }
+    });
+</script>
 </body>
 </html>
