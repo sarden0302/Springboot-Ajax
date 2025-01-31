@@ -1,13 +1,60 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Title</title>
+    <title>회원가입 성공</title>
     <link rel="icon" href="/favicon.ico">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
-<h1>singup</h1>
+<h2>회원가입</h2>
+<form>
+    <label for="nickname">닉네임 : </label>
+    <input type="text" id="nickname" name="nickname" th:value="${nickname}" disabled>
+
+    <label>이름 : </label>
+    <input type="text" id="username" name="kakao" th:value="${name}" disabled>
+
+    <label>이메일 : </label>
+    <input type="email" name="kakao" th:value="${email}" disabled>
+
+    <label>비밀번호 : </label>
+    <input type="password" id="password" name="password" required>
+    <!-- image src th:src 카카오톡 프로필 이미지 가져오기 -->
+    <img th:src="${profileImg}">
+    <button type="button" id="signForm">가입하기</button>
+</form>
+
+<script>
+    $('#signForm').on("submit", function (e) {
+        e.preventDefault();
+        let nickname = $('#nickname').val();
+        let username = $('#username').val();
+        let email = $('#email').val();
+        let password = $('#password').val();
+
+
+        $.ajax({
+            url: '/api/signup',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                nickname: nickname,
+                username : username,
+                email : email,
+                password : password
+            }),
+            success : function (data) {
+
+            },
+            error : function () {
+                alert("회원가입에 실패했습니다.");
+            }
+
+        })
+    })
+
+</script>
 </body>
 </html>

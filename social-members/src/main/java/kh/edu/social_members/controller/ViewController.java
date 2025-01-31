@@ -18,17 +18,18 @@ public class ViewController {
     @GetMapping("/signup")
     public String signup(@RequestParam("nickname") String nickname,
                          @RequestParam("email") String email,
-                         @RequestParam("profileImg") String profileImg,
                          @RequestParam("name") String name,
+                         @RequestParam("gender") String gender,
+                         @RequestParam("profileImg") String profileImg,
                          Model model) {
         model.addAttribute("nickname", nickname);
         model.addAttribute("email", email);
-        model.addAttribute("profileImg", profileImg);
         model.addAttribute("name", name);
+        model.addAttribute("gender", gender);
+        model.addAttribute("profileImg", profileImg);
         log.info("=========== signup controller ==========");
         log.info("nickname : " + nickname);
         log.info("email : " + email);
-        log.info("profileImg : " + profileImg);
         log.info("name : " + name);
         return "signup";
     }
