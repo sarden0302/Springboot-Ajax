@@ -12,5 +12,9 @@ public interface PizzaMenuMapper {
 
     PizzaMenu getPizzaMenuById(int id);
 
+    void insertPizzaMenu(PizzaMenu pizzaMenu);
+
     int updatePizzaMenu(PizzaMenu pizzaMenu);
+
+    int deleteById(int id);
 }

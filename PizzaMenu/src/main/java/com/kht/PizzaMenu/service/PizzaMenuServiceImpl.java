@@ -30,6 +30,26 @@ public class PizzaMenuServiceImpl implements PizzaMenuService{
     }
 
     @Override
+    public void insertPizzaMenu(String name, int price, String description, MultipartFile file) {
+        String filename = System.currentTimeMillis() + "_ " + file.getOriginalFilename();
+
+        File saveFile = new File(uploadPizzaMenu + filename);
+
+        try {
+            file.transferTo(saveFile);
+            PizzaMenu pizzaMenu = new PizzaMenu();
+            pizzaMenu.setName(name);
+            pizzaMenu.setPrice(price);
+            pizzaMenu.setDescription(description);
+            pizzaMenu.setImagePath("/images/" + filename);
+
+            pizzaMenuMapper.insertPizzaMenu(pizzaMenu);
+        } catch (Exception e) {
+            System.out.println("이미지 저장 실패!");
+        }
+    }
+
+    @Override
     public int updatePizzaMenu(String name, int price, String description, MultipartFile file, PizzaMenu pizzaMenu) {
         String filename = System.currentTimeMillis() + "_ " + file.getOriginalFilename();
 
@@ -49,5 +69,10 @@ public class PizzaMenuServiceImpl implements PizzaMenuService{
         }
 
 
+    }
+
+    @Override
+    public int deleteById(int id) {
+        return pizzaMenuMapper.deleteById(id);
     }
 }

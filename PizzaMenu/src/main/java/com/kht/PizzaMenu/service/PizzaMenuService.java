@@ -11,5 +11,9 @@ public interface PizzaMenuService {
 
     PizzaMenu getPizzaMenuById(int id);
 
+    void insertPizzaMenu(String name, int price, String description, MultipartFile file);
+
     int updatePizzaMenu(String name, int price, String description, MultipartFile file, PizzaMenu pizzaMenu);
+
+    int deleteById(int id);
 }

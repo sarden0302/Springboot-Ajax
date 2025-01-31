@@ -54,6 +54,27 @@
             }
         })
 
+        $('#imagePath').change(function (event) {
+            const file = event.target.files[0];
+            $('#preview').html('');
+
+            if (file && file.type.startsWith("image/")) {
+                const reader = new FileReader();
+                reader.onload = function (e){
+                    console.log("reader.result : ", e.target.result);
+                    $('#imagePreview').append($('<img>').attr({
+                        "src": e.target.result,
+                        "alt" : "미리보기 이미지",
+                        "maxWidth" : "100%",
+                        "maxHeight" : "300px"
+                    }));
+                };
+                reader.readAsDataURL(file);
+            } else {
+                preview.innerHTML = "<span>지원하지 않는 파일 형식입니다.</span>";
+            }
+        })
+
         $("#edit-form").on("submit", function (event) {
             event.preventDefault();
 

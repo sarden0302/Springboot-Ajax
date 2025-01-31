@@ -11,6 +11,12 @@
         WHERE id = #{id}
     </select>
 
+    <insert id="insertPizzaMenu">
+        INSERT INTO pizzamenu
+        (name, price, description, image_path)
+        values (#{name}, #{price}, #{description}, #{imagePath})
+    </insert>
+
     <update id="updatePizzaMenu">
         UPDATE pizzamenu
         SET
@@ -20,4 +26,11 @@
             image_path = #{imagePath}
         WHERE id = #{id}
     </update>
+
+    <delete id="deleteById">
+        DELETE FROM pizzamenu
+        where id = #{id}
+    </delete>
+
+
 </mapper>

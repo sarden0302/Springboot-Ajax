@@ -36,4 +36,18 @@ public class PizzaApiController {
         pizzaMenu.setName(name);
         return pizzaMenuService.updatePizzaMenu(name, price, description, imagePath, pizzaMenu);
     }
+
+    @PostMapping("/savePizzaMenu")
+    public void savePizzaMenu(@PathVariable("id") int id,
+                              @RequestParam("name") String name,
+                              @RequestParam("price") int price,
+                              @RequestParam("description") String description,
+                              @RequestParam("imagePath") MultipartFile imagePath) {
+
+    }
+
+    @DeleteMapping("/pizzamenu/delete/{id}")
+    public int deletePizzaMenu(@PathVariable("id") int id) {
+        return pizzaMenuService.deleteById(id);
+    }
 }
