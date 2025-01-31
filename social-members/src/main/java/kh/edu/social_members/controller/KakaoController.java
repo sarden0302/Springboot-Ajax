@@ -1,4 +1,4 @@
-package com.kht.Ecommerce.controller;
+package kh.edu.social_members.controller;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -16,36 +16,27 @@ import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/oauth/kakao")
-public class KakaoAPIController {
+@RequestMapping("/login/oauth2/code/kakao")
+public class KakaoController {
 
-    // ${변수이름} config.properties || application.properties 에 작성한 변수 이름 가져오기
-    // 변수이름에 해당하는 값을 가져오기
-    // 직접 작성시 spring 에서 오류 발생
     @Value("${kakao.client-id}")
-    private String kakaoClientId;   // ${REST_API_KEY}
+    private String kakaoClientId;
 
-    // config.properties 에서 kakao.redirect-uri 직접적으로 가져올 수도 있다
-    // 하지만 보안을 가장 중요하게 생각하기 때문에 java-spring 자체에서 throws error
-    // kakao.redirect-uri=http://localhost:8080/oauth/kakao/callback
     @Value("${kakao.redirect-uri}")
-    private String redirectUri; // ${REDIRECT_URI}
+    private String redirectUri;
 
     @Value("${kakao.client-secret}")
     private String kakaoClientSecret;
 
     @GetMapping("/login")
-    public ResponseEntity<?> getKakaoLoginUrl() {   // ResponseEntity<?> 작성을 안해도 됌. 현재 제대로 진행되고 있는지 상태 확인 (f12 network)
-        // 카카오톡 개발 문서에서 카카오로그인 > 예제 > 요청에 작성된 주소를 그대로 가져온 샅애
+    public ResponseEntity<?> getKakaoLoginUrl() {
         String url = "https://kauth.kakao.com/oauth/authorize?response_type=code" +
                 "&client_id=" + kakaoClientId +
                 "&redirect_uri=" + redirectUri;
         return ResponseEntity.ok(url);
     }
 
-
-
-    @GetMapping("/callback") // oauth/kakao/callback
+    @GetMapping("/callback")
     public String handleCallback(@RequestParam("code") String code) {
         String tokenUrl = "https://kauth.kakao.com/oauth/token";
 
@@ -80,8 +71,6 @@ public class KakaoAPIController {
 
 
         Map userInfo = userResponse.getBody();
-        System.out.println("=============== [Controller] user info ===============");
-        System.out.println(userInfo);
         Map<String, Object> properties = (Map<String, Object>) userInfo.get("properties");
         Map<String, Object> kakaoAccount = (Map<String, Object>) userInfo.get("kakao_account");
 
@@ -93,12 +82,11 @@ public class KakaoAPIController {
         String encodedNickname = URLEncoder.encode(nickname, StandardCharsets.UTF_8);
 
         String email = (String) kakaoAccount.get("email");
-
+        String name = (String) kakaoAccount.get("name");
 
 
         // 키-값 받아오기 위해 키-값 시작 = ? 기호
         // 키-값 여러값 받아오고 전달할 경우 = & 기호로 키-값 다수 사용
-        return "redirect:/signup?nickname=" + encodedNickname + "&email=" + email + "&profileImg=" + profileImg;
+        return "redirect:/signup?nickname=" + encodedNickname + "&email=" + email + "&profileImg=" + profileImg + "&name" + name;
     }
-
 }

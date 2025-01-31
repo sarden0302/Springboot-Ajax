@@ -14,22 +14,17 @@
     <input type="text" name="kakao" th:value="${nickname}">
 
     <label>이름 : </label>
-    <input type="text" name="kakao" th:value="${email}" disabled>
+    <input type="text" name="kakao">
 
     <label>이메일 : </label>
-    <input type="email" name=""kakao>
+    <input type="email" name="kakao" th:value="${email}" disabled>
 
     <!-- image src th:src 카카오톡 프로필 이미지 가져오기 -->
-    <img th:src="${profileImage}">
+    <img th:src="${profileImg}">
     <button>가입하기</button>
 </form>
 
 <script>
-    $(document).ready(function () {
-
-
-    })
-
 </script>
 </body>
 </html>

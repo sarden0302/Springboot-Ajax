@@ -22,10 +22,11 @@ public class KakaoViewController {
     @GetMapping("/signup")
     public String kakaoSignUp(@RequestParam("nickname") String nickname,
                               @RequestParam("email") String email,
-                              @RequestParam("profileImage") String profileImage,
+                              @RequestParam("profileImg") String profileImg,
                               Model model) {
         model.addAttribute("nickname", nickname);
         model.addAttribute("email", email);
+        model.addAttribute("profileImg", profileImg);
         return "kakao/kakaoSignUp";
     }
 
