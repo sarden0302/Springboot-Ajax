@@ -26,6 +26,8 @@
 </div>
 <script>
     const pizzaId = new URLSearchParams(window.location.search).get("id");
+
+    // 상세보기 url 설정
     $.ajax({
         url:`/api/pizza/${pizzaId}`,
         method: 'GET',
@@ -38,6 +40,7 @@
             $("#pizza-name").text(pizza.name);
             $("#pizza-price").text(pizza.price);
             $("#pizza-description").text(pizza.description);
+            // $('#edit-button').attr("href", `/pizzas/edit?id=${pizzaId}`);
 
         },
         error: function () {
@@ -47,11 +50,13 @@
         }
     });
 
+    // 수정 url 설정
     function editFunction() {
         console.log("edit function");
         window.location.href = `/pizzas/edit?id=${pizzaId}`;
     }
 
+    // 삭제 url 설정
     $('#delete-button').click(function () {
         if (confirm("정말 삭제하시겠습니까? ")) {
             $.ajax({
