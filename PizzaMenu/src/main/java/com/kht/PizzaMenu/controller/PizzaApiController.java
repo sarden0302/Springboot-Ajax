@@ -38,12 +38,11 @@ public class PizzaApiController {
     }
 
     @PostMapping("/savePizzaMenu")
-    public void savePizzaMenu(@PathVariable("id") int id,
-                              @RequestParam("name") String name,
+    public void savePizzaMenu(@RequestParam("name") String name,
                               @RequestParam("price") int price,
                               @RequestParam("description") String description,
                               @RequestParam("imagePath") MultipartFile imagePath) {
-
+        pizzaMenuService.insertPizzaMenu(name, price, description, imagePath);
     }
 
     @DeleteMapping("/pizzamenu/delete/{id}")

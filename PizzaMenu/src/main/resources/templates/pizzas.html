@@ -41,6 +41,7 @@
                             <td>${pizza.price}</td>
                             <td><img src="${pizza.imagePath ? pizza.imagePath : "/images/default-pizza.png"}" alt="이미지" style="width: 50px;"></td>
                             <td>
+                                <a href="/pizzas/detail?id=${pizza.id}">상세보기</a>
                                 <a href="/pizzas/edit?id=${pizza.id}">수정</a>
                                 <button onclick="deletePizzaMenu(${pizza.id})">삭제</button>
                             </td>
@@ -54,15 +55,22 @@
     });
 
     function deletePizzaMenu(id) {
-        $.ajax({
-            url : `/api/pizzamenu/delete/${id}`,
-            method : 'DELETE',
-            success : function () {
-                alert("삭제 완료!");
-                window.location.href = "/pizzas";
-            }
+        if (confirm("정말 삭제하시겠습니까? ")) {
+            $.ajax({
+                url : `/api/pizzamenu/delete/${id}`,
+                method : 'DELETE',
+                success : function () {
+                    alert("삭제 완료!");
+                    //window.location.href = "/pizzas";
+                    location.reload();  // location 현재 보고 있는 페이지 새로고침하기
+                },
+                error : function() {
+                    alert("컨트롤러에서 문제 발생! 삭제 불가");
+                }
 
-        })
+            })
+
+        }
     }
 </script>
 </body>

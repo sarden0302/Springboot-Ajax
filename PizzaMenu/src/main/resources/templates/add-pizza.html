@@ -43,7 +43,7 @@
             formData.append("imagePath", $("#imagePath")[0].files[0]);
 
             $.ajax({
-                url : '',
+                url : '/savePizzaMenu',
                 method : 'POST',
                 data : formData,
                 success: function (data) {
@@ -54,7 +54,29 @@
                     console.log(error + "발생");
                 }
             })
+        })
 
+        $("#imagePath").change(function (event) {
+            const file = event.target.files[0];
+            //const preview = document.getElementById("imagePreview");
+            //preview.innerHTML = "";
+            $('#imagePreview').html('');
+
+            if (file && file.type.startsWith("image/")) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    console.log("reader.result : ", e.target.result);
+                    $('#imagePreview').append($('<img>').attr({
+                        "src": e.target.result,
+                        "alt" : "미리보기 이미지",
+                        "maxWidth" : "100%",
+                        "maxHeight" : "300px"
+                    }));
+                };
+                reader.readAsDataURL(file);
+            } else {
+                $('#imagePreview').innerHTML = "<span>지원하지 않는 파일 형식입니다.</span>";
+            }
         })
     })
 
