@@ -110,7 +110,7 @@ p {
     }
 }
 
-#pizza-image {
+#pizza-img {
     display: none;
 }
 
@@ -140,4 +140,41 @@ p {
 
 .image-preview label:hover {
     background-color: #0056b3;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+textarea {
+    height: 80px;
+    resize: none;
+}
+
+.btn#editCancel{
+    background-color: #dc3545;
+}
+
+.btn#editCancel:hover{
+    background-color: #c82333;
+}
+
+
+.btn[href] {
+    background-color: #17a2b8;
+}
+.btn[href]:hover {
+    background-color: #138496;
 }
