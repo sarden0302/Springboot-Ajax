@@ -22,7 +22,7 @@
         <!-- JQuery로 데이터 추가 -->
         </tbody>
     </table>
-    <a href="/add-pizza.html">메뉴 추가</a>
+    <a href="/pizzas/add">메뉴 추가</a>
 </div>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
@@ -39,7 +39,7 @@
                         <tr>
                             <td>${pizza.name}</td>
                             <td>${pizza.price}</td>
-                            <td><img src="${pizza.imagePath}" alt="이미지" style="width: 50px;"></td>
+                            <td><img src="${pizza.imagePath ? pizza.imagePath : "/images/default-pizza.png"}" alt="이미지" style="width: 50px;"></td>
                             <td>
                                 <a href="/pizzas/edit?id=${pizza.id}">수정</a>
                                 <button onclick="deletePizzaMenu(${pizza.id})">삭제</button>

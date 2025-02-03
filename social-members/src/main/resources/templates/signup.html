@@ -10,14 +10,14 @@
 <body>
 <h2>회원가입</h2>
 <form>
-    <label for="nickname">닉네임 : </label>
+    <label>닉네임 : </label>
     <input type="text" id="nickname" name="nickname" th:value="${nickname}" disabled>
 
     <label>이름 : </label>
-    <input type="text" id="username" name="kakao" th:value="${name}" disabled>
+    <input type="text" id="username" name="username" th:value="${name}" disabled>
 
     <label>이메일 : </label>
-    <input type="email" name="kakao" th:value="${email}" disabled>
+    <input type="email" name="email" th:value="${email}" disabled>
 
     <label>비밀번호 : </label>
     <input type="password" id="password" name="password" required>
@@ -27,26 +27,27 @@
 </form>
 
 <script>
-    $('#signForm').on("submit", function (e) {
+    $('#signForm').click(function (e) {
         e.preventDefault();
         let nickname = $('#nickname').val();
         let username = $('#username').val();
         let email = $('#email').val();
         let password = $('#password').val();
+        const formData = new FormData();
+        formData.append("nickname", nickname);
+        formData.append("username", username);
+        formData.append("email", email);
+        formData.append("password", password);
 
 
         $.ajax({
             url: '/api/signup',
             method: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify({
-                nickname: nickname,
-                username : username,
-                email : email,
-                password : password
-            }),
-            success : function (data) {
-
+            contentType: false, // FormData 를 전송할 때 필요
+            processData: false,
+            data: formData,
+            success : function () {
+                window.location.href='success';
             },
             error : function () {
                 alert("회원가입에 실패했습니다.");

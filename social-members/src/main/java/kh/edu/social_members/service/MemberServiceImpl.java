@@ -12,7 +12,7 @@ public class MemberServiceImpl implements MemberService {
     MemberMapper memberMapper;
 
     @Override
-    public void insertMember(Member member) {
-        memberMapper.insertMember(member);
+    public void insertMember(String nickname, String username, String password, String email) {
+        memberMapper.insertMember(nickname, username, password, email);
     }
 }
