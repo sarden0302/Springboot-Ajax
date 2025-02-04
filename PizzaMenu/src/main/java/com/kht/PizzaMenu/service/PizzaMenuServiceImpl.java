@@ -20,7 +20,7 @@ public class PizzaMenuServiceImpl implements PizzaMenuService{
     PizzaMenuMapper pizzaMenuMapper;
 
     // 직접적으로 경로를 작성할 경우 파일 위치 노출에 대한 위험이 있기 때문에 properties 작성 후 불러오기
-    @Value("${upload-img}") // 파일이름.properties 에서 작성한 변수이름을 가져와서 변수 이름 내 작성된 경로 사용
+    @Value("D://Leo/SoftwareEngineering/static/images/pizza-image/") // 파일이름.properties 에서 작성한 변수이름을 가져와서 변수 이름 내 작성된 경로 사용
     private String uploadPizzaMenu;
 
     @Override
@@ -100,7 +100,7 @@ public class PizzaMenuServiceImpl implements PizzaMenuService{
             // file.getOriginalFilename() -> uuid 로 작성된 파일명 설정
             // DB 에 경로를 추가할 때는 WebConfig 에 작성한 fake 경로를 파일명 앞에 작성
             // 예를 들어 WebConfig 에서 D://Leo/SoftwareEngineering/static/image/pizzamenu/ 경로를 /uploaded/ 라는 경로로 읽도록 설정
-            pizzaMenu.setImagePath(uploadPizzaMenu + uuid + fileExtension);
+            pizzaMenu.setImagePath("/pizzaImg/" + uuid + fileExtension);
 
             return pizzaMenuMapper.updatePizzaMenu(pizzaMenu);
         } catch (Exception e) {

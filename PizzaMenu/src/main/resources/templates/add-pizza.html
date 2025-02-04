@@ -37,15 +37,17 @@
         $("#insert-form").submit(function (event) {
             event.preventDefault();
             let formData = new FormData();
-            formData.append("title", title);
-            formData.append("author", author);
-            formData.append("genre", genre);
-            formData.append("imagePath", $("#imagePath")[0].files[0]);
+            formData.append("name", $('#name').val());
+            formData.append("price", $('#price').val());
+            formData.append("description", $('#description').val());
+            formData.append("imagePath", $('#imagePath')[0].files[0]);
 
             $.ajax({
-                url : '/savePizzaMenu',
+                url : '/api/savePizzaMenu',
                 method : 'POST',
                 data : formData,
+                processData : false,
+                contentType : false,
                 success: function (data) {
                     alert(data + "개 추가!");
                     window.location.href = `/pizzas`;

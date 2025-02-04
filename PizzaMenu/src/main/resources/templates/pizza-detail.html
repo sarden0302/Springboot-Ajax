@@ -19,7 +19,7 @@
         <p><strong>설명 : </strong><span id="pizza-description"></span> </p>
     </div>
     <div class="buttons">
-        <a id="edit-button" class="button" href="#" onclick="editFunction()">수정</a>
+        <a id="edit-button" class="btn" href="#" onclick="editFunction()">수정</a>
         <button id="delete-button" class="btn">삭제</button>
         <a href="/pizzas" class="btn">목록으로 이동하기</a>
     </div>
@@ -40,6 +40,9 @@
             $("#pizza-name").text(pizza.name);
             $("#pizza-price").text(pizza.price);
             $("#pizza-description").text(pizza.description);
+            if (pizza.imagePath) {
+                $('#pizza-img').attr("src", pizza.imagePath);
+            }
             // $('#edit-button').attr("href", `/pizzas/edit?id=${pizzaId}`);
 
         },

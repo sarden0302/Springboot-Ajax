@@ -41,9 +41,9 @@
                             <td>${pizza.price}</td>
                             <td><img src="${pizza.imagePath ? pizza.imagePath : "/images/default-pizza.png"}" alt="이미지" style="width: 50px;"></td>
                             <td>
-                                <a href="/pizzas/detail?id=${pizza.id}">상세보기</a>
-                                <a href="/pizzas/edit?id=${pizza.id}">수정</a>
-                                <button onclick="deletePizzaMenu(${pizza.id})">삭제</button>
+                                <a href="/pizzas/detail?id=${pizza.id}" class="btn">상세보기</a>
+                                <a href="/pizzas/edit?id=${pizza.id}" class="btn">수정</a>
+                                <button onclick="deletePizzaMenu(${pizza.id})" class="btn">삭제</button>
                             </td>
                         </tr>
                     `);
