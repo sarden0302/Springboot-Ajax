@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class IndexPizzaController {
+public class IndexViewController {
 
     @GetMapping("/")
     public String index() {
