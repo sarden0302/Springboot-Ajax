@@ -95,7 +95,7 @@ public class KakaoAPIController2 {
         String birthday = (String) kakaoAccount.get("birthday");
         String phoneNumber = (String) kakaoAccount.get("phone_number");
 
-        log.info("profile_image : " + profileImg + ", email: " + email + ", gender: " + gender + ", birthday: " + birthday + ", phone: " + phoneNumber);
+        log.info("nickname : " + encodedNickname + ", profile_image : " + profileImg + ", email: " + email + ", gender: " + gender + ", birthday: " + birthday + ", phone: " + phoneNumber);
 
         // 3. 회원가입으로 이동할 때 카카오에서 가져온 데이터 사용하기위해 전달
         return "redirect:/signup/kakao?nickname=" + encodedNickname + "&email=" + email + "&profileImg=" + profileImg + "&gender=" + gender + "&birthday=" + birthday;
