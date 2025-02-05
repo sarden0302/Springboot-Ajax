@@ -5,6 +5,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+// 만약에 외부에서 작성한 코드를 참조해서 사용하길 원한다면 프로젝트에 맞게 코드 수정 필요!
+
 // 네이버 API 예제 - 회원프로필 조회
 public class APIExamMemberProfile {
 

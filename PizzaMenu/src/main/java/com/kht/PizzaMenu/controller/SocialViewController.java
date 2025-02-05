@@ -24,7 +24,12 @@ public class SocialViewController {
 
     // 네이버 회원가입 html 연결
     @GetMapping("/signup/naver")
-    public String naverSignup() {
+    public String naverSignup(@RequestParam("nickname") String nickname,
+                              @RequestParam("name") String name,
+                              @RequestParam("email") String email,
+                              @RequestParam("gender") String gender,
+                              @RequestParam("profileImage") String profileImage,
+                              @RequestParam("birthday") String birthday) {
         return "signup/naver";
     }
 }
