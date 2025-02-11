@@ -38,6 +38,11 @@ public class KakaoAPIController {
 
     @GetMapping("/callback")
     public String handleCallback(@RequestParam String code) {
+        /******************************
+         *
+         * Service 로 옮겨야 한다
+         *
+         */
         String tokenUrl = "https://kauth.kakao.com/oauth/token";
         RestTemplate restTemplate = new RestTemplate();
 

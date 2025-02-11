@@ -45,6 +45,7 @@ public class NaverAPIController {
     @GetMapping("/callback")
     public String handleCallback(@RequestParam("code") String code,
                                  @RequestParam("state") String state) {
+        /***************** 추후 Service 로 나눌 것! ******************/
         try {
             String tokenUrl = "https://nid.naver.com/oauth2.0/token";
             RestTemplate restTemplate = new RestTemplate();

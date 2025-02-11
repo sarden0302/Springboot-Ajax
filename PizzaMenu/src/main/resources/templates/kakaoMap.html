@@ -29,12 +29,12 @@
 -->
 <script>
     // https = 안전하게 보호되고, 공식적으로 사용하는 웹사이트
-    // http = 개발 환경 -> 안전 보장 x
+    // http  = 개발 환경 안전 보장 X -> 현재 위치가 이상하게 가져올 수 있음
 
     // 현재 위치에서 지도 설정
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
-            center: new kakao.maps.LatLng(33.450701, 126.570667), // 기본적으로 설정한 위치
+            center: new kakao.maps.LatLng(33.450701, 126.570667), // 기본적으로 설정할 위치
             level: 3 // 지도의 확대 레벨
         };
 
@@ -43,33 +43,32 @@
 
     // 현재 위치 가져오기
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (postion) {
-            var lat = position.coords.latitude; // 위도
-            var lon = position.coords.longitude; // 경도
+        navigator.geolocation.getCurrentPosition(function (position) {
+                var lat = position.coords.latitude; //위도
+                var lon = position.coords.longitude;// 경도
 
-            var position = new kakao.maps.LatLng(lat, lon); // 현재 위치 좌표 kakao 회사의 map 을 활용해서 설정
+                var position = new kakao.maps.LatLng(lat, lon); // 현재 위치 좌표 kakao 회사의 map을 활용해서 설정
 
-            map.setCenter(postion); // 기본적으로 설정한 위치 -> 내 위치 기준으로 이동
+                map.setCenter(position); // 기본적으로 설정할 위치 ->내 위치 기준으로 이동
 
-            // 내 위치를 표기할 마커 추가
-            var marker = new kakao.maps.Marker({
-                position: position,
-            });
-            marker.setMap(map);
+                // 내 위치를 표기할 마커 추가
+                var marker = new kakao.maps.Marker({
+                    position: position,
+                });
+                marker.setMap(map);
 
-            // 내 위치 정보를 표시하면서 현재 위치임을 나타내기 위한 말풍선 (선택사항)
-            var infoWindow = new kakao.maps.InfoWindow({
-                content: '<div style="padding:10px">현재위치</div>'
-            });
+                // 내 위치 정보를 표시하면서 현재 위치임을 나타내기 위한 말풍선 (선택사항)
+                var infoWindow = new kakao.maps.InfoWindow({
+                    content: '<div style="padding:10px">현재 위치</div>'
+                });
 
-            infoWindow.open(map, marker);
-        }, function () {
-            alert("현재 위치를 가져올 수 없습니다.");
-        },
+                infoWindow.open(map, marker);
+            }, function () {
+                alert("현재 위치를 가져올 수 없습니다.");
+            },
             {
-                enableHighAccuracy: true // gps 기반 위치 사용
+                enableHighAccuracy: true //gps 기반 위치 사용
             }
-
         )
     }
 </script>
