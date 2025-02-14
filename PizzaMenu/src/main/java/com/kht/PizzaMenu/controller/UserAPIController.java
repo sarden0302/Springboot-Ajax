@@ -7,9 +7,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,10 +37,37 @@ public class UserAPIController {
     }
 
     // logout
+    @PostMapping("/logout")
+    public ResponseEntity<Map<String, Object>> logoutUser(HttpSession session) {
+        session.invalidate();
+        Map<String, Object> response = new HashMap<>();
+        response.put("status", "logout");
+        return ResponseEntity.status(200).body(response);
+    }
+
 
     // checking whether login or not
+    @GetMapping("/checkLogin")
+    public ResponseEntity<?> checkLogin(HttpSession session) {
+        User loginUser = (User) session.getAttribute("user");
+        if (loginUser != null) {
+            return ResponseEntity.ok(loginUser);
+        } else {
+            return ResponseEntity.status(401).body(Map.of("message", "로그인 상태가 이닙니다."));
+        }
+    }
 
     // MyPage
+    @GetMapping("/{userId}")
+    public ResponseEntity<?> findUserId(@PathVariable("userId") String userId) {
+        User user = userService.findUserId(userId);
+
+        if (user != null) {
+            return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.status(404).body(Map.of("status", "로그인 상태가 아닙니다."));
+        }
+    }
 
     //
 
