@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1ab1ac22-d101-49bb-81ad-a244d0b8a85e" name="Changes" comment="LoginInterceptor user session 관리">
+      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/SpringBoot-Ajax-workspace.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/git_toolbox_blame.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserRole/src/main/java/kh/edu/react/provider/controller/UserAPIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserRole/src/main/java/kh/edu/react/provider/controller/UserAPIController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserRole/src/main/java/kh/edu/react/provider/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserRole/src/main/java/kh/edu/react/provider/service/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserRole/src/main/resources/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/UserRole/src/main/resources/config.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="HTML File" />
+        <option value="Interface" />
+        <option value="XML myBatis File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;sarden0302&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/sarden0302/Springboot-Ajax.git&quot;,
+    &quot;accountId&quot;: &quot;c08485b6-3e37-47ea-9e7c-35b27439593e&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2sClOE4gk2pdr0mC3k4ULVm0D7X" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Gradle.Build PizzaMenu.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.PizzaMenuApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Leo/SoftwareEngineering/SpringBoot-Ajax-workspace/PizzaMenu/springboot-social-react-connect&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Leo\SoftwareEngineering\SpringBoot-Ajax-workspace\PizzaMenu\src\main\resources\static\images" />
+      <recent name="D:\Leo\SoftwareEngineering\react-workspace\PizzaMenu\src\main\resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Leo\SoftwareEngineering\SpringBoot-Ajax-workspace\PizzaMenu\src\main\resources\static\images" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.kht.PizzaMenu.service" />
+      <recent name="com.kht.PizzaMenu.controller" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="PizzaMenuApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="PizzaMenu.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.kht.PizzaMenu.PizzaMenuApplication" />
+      <option name="UPDATE_ACTION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.23654.189" />
+        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-IU-243.23654.189" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1ab1ac22-d101-49bb-81ad-a244d0b8a85e" name="Changes" comment="" />
+      <created>1737967403810</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1737967403810</updated>
+      <workItem from="1737967405483" duration="428000" />
+      <workItem from="1738122376533" duration="4462000" />
+      <workItem from="1738126974004" duration="633000" />
+      <workItem from="1738211781734" duration="5194000" />
+      <workItem from="1738279335290" duration="2473000" />
+      <workItem from="1738285067029" duration="3101000" />
+      <workItem from="1738541332568" duration="9032000" />
+      <workItem from="1738551880754" duration="9985000" />
+      <workItem from="1738626189349" duration="2797000" />
+      <workItem from="1738710518811" duration="19448000" />
+      <workItem from="1738797936301" duration="2951000" />
+      <workItem from="1738887011423" duration="886000" />
+      <workItem from="1739145916054" duration="595000" />
+      <workItem from="1739231719949" duration="631000" />
+      <workItem from="1739247125667" duration="742000" />
+      <workItem from="1739263016314" duration="1459000" />
+      <workItem from="1739318565099" duration="23000" />
+      <workItem from="1739403137274" duration="13000" />
+      <workItem from="1739405339542" duration="10545000" />
+      <workItem from="1739491385057" duration="4769000" />
+      <workItem from="1739499245764" duration="885000" />
+      <workItem from="1739550870209" duration="294000" />
+      <workItem from="1739587156785" duration="2420000" />
+      <workItem from="1739747217624" duration="1792000" />
+      <workItem from="1739756782416" duration="1696000" />
+      <workItem from="1739770194340" duration="659000" />
+      <workItem from="1739794236546" duration="17000" />
+      <workItem from="1739833460472" duration="116000" />
+      <workItem from="1739837010946" duration="52000" />
+    </task>
+    <task id="LOCAL-00001" summary="Pizza menu">
+      <option name="closed" value="true" />
+      <created>1738127002960</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1738127002960</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Pizza menu edit">
+      <option name="closed" value="true" />
+      <created>1738213856352</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1738213856352</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Pizza menu edit detail">
+      <option name="closed" value="true" />
+      <created>1738234861416</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1738234861416</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Pizza menu edit detail delete add">
+      <option name="closed" value="true" />
+      <created>1738281829757</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1738281829757</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Pizza menu edit detail delete add">
+      <option name="closed" value="true" />
+      <created>1738547432605</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1738547432605</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Pizza menu edit detail delete add">
+      <option name="closed" value="true" />
+      <created>1738559403927</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1738559403927</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Pizza menu edit detail delete add">
+      <option name="closed" value="true" />
+      <created>1738561971548</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1738561971548</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Pizza api update">
+      <option name="closed" value="true" />
+      <created>1738565210865</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1738565210865</updated>
+    </task>
+    <task id="LOCAL-00009" summary="naver api">
+      <option name="closed" value="true" />
+      <created>1738716740159</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1738716740159</updated>
+    </task>
+    <task id="LOCAL-00010" summary="naver api login -&gt; signup">
+      <option name="closed" value="true" />
+      <created>1738722164280</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1738722164280</updated>
+    </task>
+    <task id="LOCAL-00011" summary="kakap Map API JavaScript">
+      <option name="closed" value="true" />
+      <created>1738727122829</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1738727122829</updated>
+    </task>
+    <task id="LOCAL-00012" summary="kakap Map API JavaScript">
+      <option name="closed" value="true" />
+      <created>1739246999664</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1739246999664</updated>
+    </task>
+    <task id="LOCAL-00013" summary="kakap Map API JavaScript">
+      <option name="closed" value="true" />
+      <created>1739450901722</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1739450901722</updated>
+    </task>
+    <task id="LOCAL-00014" summary="LoginInterceptor user session 관리">
+      <option name="closed" value="true" />
+      <created>1739494296402</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1739494296402</updated>
+    </task>
+    <task id="LOCAL-00015" summary="LoginInterceptor user session 관리">
+      <option name="closed" value="true" />
+      <created>1739495216231</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1739495216231</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Pizza menu" />
+    <MESSAGE value="Pizza menu edit" />
+    <MESSAGE value="Pizza menu edit detail" />
+    <MESSAGE value="Pizza menu edit detail delete add" />
+    <MESSAGE value="Pizza api update" />
+    <MESSAGE value="naver api" />
+    <MESSAGE value="naver api login -&gt; signup" />
+    <MESSAGE value="kakap Map API JavaScript" />
+    <MESSAGE value="LoginInterceptor user session 관리" />
+    <option name="LAST_COMMIT_MESSAGE" value="LoginInterceptor user session 관리" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/kht/PizzaMenu/service/PizzaMenuServiceImpl.java</url>
+          <line>52</line>
+          <properties class="com.kht.PizzaMenu.service.PizzaMenuServiceImpl" method="updatePizzaMenu">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/main/resources/templates/edit-pizza.html</url>
+          <line>70</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
