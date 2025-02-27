@@ -32,4 +32,9 @@ public class ProductServiceImpl implements ProductService {
     public void saveProduct(Product product) {
         productMapper.saveProduct(product);
     }
+
+    @Override
+    public int deleteProduct(int productId) {
+        return productMapper.deleteProduct(productId);
+    }
 }

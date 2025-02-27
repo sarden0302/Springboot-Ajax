@@ -16,4 +16,7 @@ public interface ProductService {
 
     // 제품 저장 -> 자료형 : void, int
     void saveProduct(Product product);
+
+    // 제품 삭제
+    int deleteProduct(int productId);
 }

@@ -2,11 +2,13 @@ package kh.edu.react.provider.controller;
 
 import kh.edu.react.provider.dto.BoardPost;
 import kh.edu.react.provider.service.BoardPostServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/posts")
 public class BoardPostController {
@@ -51,6 +53,7 @@ public class BoardPostController {
 
     @DeleteMapping("/{postId}")
     public void deletePost(@PathVariable int postId) {
+        log.info("Delete post with id {}", postId);
         boardPostService.deletePost(postId);
     }
 }

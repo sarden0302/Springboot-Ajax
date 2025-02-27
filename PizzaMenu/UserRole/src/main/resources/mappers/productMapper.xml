@@ -46,4 +46,9 @@
             SQL 컬럼이름과 DTO 에 작성한 변수이름이 일치하지 않아 발생
             SQL 컬럼이름이 Mapper.xml 과 MySQL 에 작성된 컬럼이름이 일치하지 않아 발생
      -->
+
+    <delete id="deleteProduct">
+        DELETE FROM product
+        WHERE product_id = #{productId}
+    </delete>
 </mapper>
