@@ -8,26 +8,7 @@ import java.util.List;
 public interface ClothesService {
     List<Clothes> getAllClothes();
     Clothes getClothesById(int cId);
-    void insertClothes(String cName,
-                       String cCategory,
-                       String cBrand,
-                       String cColor,
-                       String cSize,
-                       String cMaterial,
-                       int cPrice,
-                       int cStock,
-                       String cGender,
-                       String cSeason);
-    void updateClothes(int cId,
-                       String cName,
-                       String cCategory,
-                       String cBrand,
-                       String cColor,
-                       String cSize,
-                       String cMaterial,
-                       int cPrice,
-                       int cStock,
-                       String cGender,
-                       String cSeason);
+    void insertClothes(Clothes clothes);
+    void updateClothes(Clothes clothes);
     void deleteClothes(int cId);
 }

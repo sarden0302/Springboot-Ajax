@@ -22,44 +22,25 @@ public class ClothesController {
         return clothesService.getAllClothes();
     }
 
-    @GetMapping("/{id}")
-    public Clothes getClothesById(@PathVariable int id) {
-        return clothesService.getClothesById(id);
+    @GetMapping("/{cId}")
+    public Clothes getClothesById(@PathVariable("cId") int cId) {
+        return clothesService.getClothesById(cId);
     }
 
     @PostMapping
-    public void insertClothes(@RequestParam("cName") String cName,
-                              @RequestParam("cCategory") String cCategory,
-                              @RequestParam("cBrand") String cBrand,
-                              @RequestParam("cColor") String cColor,
-                              @RequestParam("cSize") String cSize,
-                              @RequestParam("cMaterial") String cMaterial,
-                              @RequestParam("cPrice") int cPrice,
-                              @RequestParam("cStock") int cStock,
-                              @RequestParam("cGender") String cGender,
-                              @RequestParam("cSeason") String cSeason) {
+    public void insertClothes(@RequestBody Clothes clothes) {
         log.info("====== Insert Clothes =====");
-        clothesService.insertClothes(cName, cCategory, cBrand, cColor, cSize, cMaterial, cPrice, cStock, cGender, cSeason);
+        clothesService.insertClothes(clothes);
     }
 
     @PutMapping
-    public void updateClothes(@RequestParam("cId") int cId,
-                              @RequestParam("cName") String cName,
-                              @RequestParam("cCategory") String cCategory,
-                              @RequestParam("cBrand") String cBrand,
-                              @RequestParam("cColor") String cColor,
-                              @RequestParam("cSize") String cSize,
-                              @RequestParam("cMaterial") String cMaterial,
-                              @RequestParam("cPrice") int cPrice,
-                              @RequestParam("cStock") int cStock,
-                              @RequestParam("cGender") String cGender,
-                              @RequestParam("cSeason") String cSeason) {
+    public void updateClothes(@RequestBody Clothes clothes) {
         log.info("====== update Clothes =====");
-        clothesService.updateClothes(cId, cName, cCategory, cBrand, cColor, cSize, cMaterial, cPrice, cStock, cGender, cSeason);
+        clothesService.updateClothes(clothes);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteClothes(@PathVariable int id) {
-        clothesService.deleteClothes(id);
+    @DeleteMapping("/{cId}")
+    public void deleteClothes(@PathVariable("cId") int cId) {
+        clothesService.deleteClothes(cId);
     }
 }
