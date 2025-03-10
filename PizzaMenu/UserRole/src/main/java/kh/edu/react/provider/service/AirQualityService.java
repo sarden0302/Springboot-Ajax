@@ -59,7 +59,6 @@ Component
 Builder
 
 queryParam = url api endpoint 주소 ?key=value 설정
-
 */
         String apiURL = UriComponentsBuilder.fromHttpUrl(API_AIR_URL)
                 .queryParam("serviceKey", SERVICE_KEY)
